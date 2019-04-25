@@ -3,26 +3,32 @@ defmodule ArenaGenerator.MixProject do
 
   def project do
     [
-      app: :arena_generator,
+      app: :garena,
       version: "0.1.0",
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      escript: escript(),
+
+      # Docs
+      name: "Arenas & Angels",
+      source_url: "https://github.com/BinaryTiger/a-a"
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
     [
       extra_applications: [:logger]
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:ex_doc, "~> 0.19", only: :dev, runtime: false},
     ]
+  end
+  
+  defp escript do
+    [main_module: ArenaGenerator.CLI]
   end
 end
