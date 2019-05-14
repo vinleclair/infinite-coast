@@ -1,12 +1,25 @@
 defmodule ArenaGenerator do
   @moduledoc """
-  Documentation for ArenaGenerator.
+  Simple arena generator for D&D.
   """
 
   @doc """
-  Hello world.
+
+
+  ## Examples
+
+  #iex> ArenaGenerator.generate(4, 4)
+      "[
+        0 0 0 0
+        0 0 0 0
+        0 0 0 0
+        0 0 0 0 
+      ]"
+
   """
-  def hello() do
-    :world
+  def generate(width, height) do
+    grid = Enum.reduce(1..height, [], fn x, h -> 
+      h ++ [Enum.reduce(1..width, [], fn y, w -> 
+        w ++ if Enum.random(1..10) == 1, do: ["X"], else: ["O"] end)] end)
   end
 end
