@@ -5,12 +5,6 @@ defmodule ArenaGenerator do
 
   @doc """
   Hello world.
-
-  ## Examples
-
-      iex> ArenaGenerator.hello()
-      :world
-
   """
   def hello() do
     :world

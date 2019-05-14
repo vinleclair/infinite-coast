@@ -1,14 +1,20 @@
 defmodule Constants do
+
+end
+
+defmodule Constants.CLI do
+  @commands %{
+    "help" => "Prints this help message.",
+    "size" => "Specify the desired size of the arena in a WIDTHxHEIGHT format."
+  }
+
   def help do
     """
     Arena Generator is a simple arena generator for D&D.
 
-    usage: garena [--help] [-s | --size <W>x<H>]
+    usage: garena [--help] [-s | --size[=]<W>x<H>]
 
-      --size: Specify the desired size of the arena in a WidthxHeight format.
-              If a single integer is given, defaults to a square. 
-              If no integer is given, defaults to 12x12.
-      --help: Prints this help message.
+    #{for {command, description} <- @commands, do: "  --#{command}: #{description}\n"}
     """
   end
 
@@ -18,5 +24,12 @@ defmodule Constants do
     usage: garena [--help] [-s | --size <W>x<H>]
     """
   end
-end
 
+  def invalid_size do
+    "garena: invalid size. Format must be WIDTHxHEIGHT (<int>x<int>)."
+  end
+
+  def overload do
+    "garena: flag overload. See 'garena --help'."
+  end
+end

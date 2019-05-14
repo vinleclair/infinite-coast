@@ -8,27 +8,32 @@ defmodule ArenaGenerator.CLI do
   """
   @spec main(String.t()) :: String.t()
   def main(args) do
-    {opts,_,invalid}= OptionParser.parse(args, strict: [help: :count, size: :string], aliases: [s: :size])
-
+    {opts, _, invalid} = OptionParser.parse(args, 
+      strict: [help: :boolean, size: :string], 
+      aliases: [s: :size])
+    
     cond do 
-      length(invalid) > 0 ->
-        print_invalid_argument(invalid)
-
-      List.first(opts) == nil or opts[:help] >= 1 ->
-        print_help()
+      Enum.empty?(invalid) and Enum.empty?(opts) ->
+        execute_command([help: true])
+      Enum.empty?(invalid) ->
+        execute_command(opts)
+      true ->
+        IO.puts Constants.CLI.invalid_argument(invalid)
     end
   end
 
-  defp print_invalid_argument(invalid) do
-    IO.puts Constants.invalid_argument(invalid)
+  defp execute_command([help: true]), do: IO.puts Constants.CLI.help
+
+  defp execute_command([size: size]) do
+    if valid_size?(size) do
+      true
+    else
+      false
+    end
   end
 
-  defp print_help() do
-    IO.puts Constants.help
-  end
+  defp execute_command(_), do: IO.puts Constants.CLI.overload
 
-  # TODO: Parse size argument
-  #defp parse_size(size) do
-  #end
+  defp valid_size?(size), do: String.match?(size, ~r/^(\d+)x(\d+)$/)
 end
 
