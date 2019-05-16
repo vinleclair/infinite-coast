@@ -27,7 +27,7 @@ defmodule ArenaGenerator.CLI do
   defp execute_command([size: size]) do
     if valid_size?(size) do
       [width, height] = String.split(size, ~r/[xX]/, trim: true)
-      arena = ArenaGenerator.generate(String.to_integer(width), String.to_integer(height))
+      arena = ArenaGenerator.generate_empty_arena(String.to_integer(width), String.to_integer(height))
       for row <- arena, do: IO.puts List.to_string(row)
     else
       IO.puts Constants.CLI.invalid_size
