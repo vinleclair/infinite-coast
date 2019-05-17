@@ -14,12 +14,12 @@ defmodule ArenaGeneratorTest do
 
   test "generate random arenas with rocks" do
     arenas = []
-    for i <- 0..100 do
+    for _ <- 0..100 do
       width = Enum.random(4..25)
       height = Enum.random(4..25)
-      arenas ++ [ArenaGenerator.generate_empty_arena(width, height)]
+      _arenas = arenas ++ [ArenaGenerator.generate_empty_arena(width, height)]
     end
 
-    for arena <- arenas, do: arena_with_rocks = ArenaGenerator.add_rocks(arena)
+    for arena <- arenas, do: ArenaGenerator.add_rocks(arena)
   end
 end

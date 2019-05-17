@@ -7,7 +7,7 @@ defmodule ArenaGenerator do
   @doc """
   Generate an empty arena based on width and height input
   """
-  @spec generate_empty_arena(integer, integer) :: List
+  @spec generate_empty_arena(integer, integer) :: map 
   def generate_empty_arena(width, height) do
     Enum.reduce(0..width - 1, %{}, fn x, x_acc -> 
       Map.put(x_acc, x, Enum.reduce(0..height - 1, %{}, fn y, y_acc -> 
@@ -32,8 +32,11 @@ defmodule ArenaGenerator do
 
   defp do_add_rocks(arena, rock_count, arena_width, arena_height) do
     rock_cluster_count = Enum.random(1..(if rock_count > 9, do: 9, else: rock_count))
+
     {x, y} = find_new_rock_cluster_location(arena, arena_width, arena_height)
+
     {arena, remaining_rock_cluster_count} = add_rock_cluster(arena, x, y, rock_cluster_count, [])
+
     do_add_rocks(arena,
       rock_count - (rock_cluster_count - remaining_rock_cluster_count),
       arena_width,
