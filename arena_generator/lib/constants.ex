@@ -1,10 +1,10 @@
 defmodule Constants do
-
 end
 
 defmodule Constants.CLI do
   @commands %{
     "help" => "Prints this help message.",
+    "level" => "Specify the desired level of the encounters",
     "size" => "Specify the desired size of the arena in a WIDTHxHEIGHT format."
   }
 
@@ -12,24 +12,24 @@ defmodule Constants.CLI do
     """
     Arena Generator is a simple arena generator for D&D.
 
-    usage: garena [--help] [-s | --size[=]<W>x<H>]
+    #{usage()}
 
     #{for {command, description} <- @commands, do: "  --#{command}: #{description}\n"}
     """
   end
 
-  def invalid_argument(invalid) do
+  def invalid_argument do
     """
-    garena: invalid argument '#{invalid |> List.first |> elem(0) }'.
-    usage: garena [--help] [-s | --size <W>x<H>]
+    garena: invalid argument. See 'garena --help'. 
+    #{usage()}
     """
   end
 
   def invalid_size do
-    "garena: invalid size. Format must be WIDTHxHEIGHT (<int>x<int>)."
+    "garena: invalid size. Format must be WIDTHxHEIGHT."
   end
 
-  def overload do
-    "garena: flag overload. See 'garena --help'."
+  defp usage do
+    "usage: garena [--help] [-lvl | --level[=]<int>] [-s | --size[=]<int>x<int>]"
   end
 end

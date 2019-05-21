@@ -6,14 +6,16 @@ defmodule ArenaGeneratorTest do
     width = Enum.random(4..25)
     height = Enum.random(4..25)
     arena = ArenaGenerator.generate_empty_arena(width, height)
-    assert map_size(arena) == width 
-    for {_column, row} <- arena do 
-      assert map_size(row) == height 
+    assert map_size(arena) == width
+
+    for {_column, row} <- arena do
+      assert map_size(row) == height
     end
   end
 
   test "generate random arenas with rocks" do
     arenas = []
+
     for _ <- 0..100 do
       width = Enum.random(4..25)
       height = Enum.random(4..25)

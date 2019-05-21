@@ -1,0 +1,34 @@
+---
+- encounter:
+    level: 1
+    enemies:
+      - goblin:
+          hp: 14
+      - goblin:
+          hp: 13
+      - goblin:
+          hp: 14
+- encounter:
+    level: 1
+    enemies:
+      - wolf:
+          hp: 8 
+      - wolf:
+          hp: 7 
+- encounter:
+    level: 1
+    enemies:
+      - bugbear:
+          hp: 20 
+      - goblin:
+          hp: 13
+      - goblin:
+          hp: 14
+      - goblin:
+          hp: 10
+- encounter:
+    level: 2
+    enemies:
+      - beholder:
+          hp: 35
+...

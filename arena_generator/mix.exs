@@ -18,16 +18,17 @@ defmodule ArenaGenerator.MixProject do
 
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :yamerl]
     ]
   end
 
   defp deps do
     [
       {:ex_doc, "~> 0.19", only: :dev, runtime: false},
+      {:yaml_elixir, "~> 2.4.0"}
     ]
   end
-  
+
   defp escript do
     [main_module: ArenaGenerator.CLI]
   end
