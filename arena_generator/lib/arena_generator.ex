@@ -32,50 +32,6 @@ defmodule ArenaGenerator do
     do_add_rocks(arena, rock_count, arena_width, arena_height)
   end
 
-  @doc """
-  Add a random encounter to one side of the arena
-  """
-  @spec add_encounter(map, integer) :: map
-  def add_encounter(arena, 0), do: arena
-  def add_encounter(arena, level) do
-    level
-    |> get_random_encounter_from_file
-    |> Map.get("enemies")
-    |> Enum.reduce([], fn enemy, acc -> 
-      acc ++ [Map.keys(enemy) |> List.first() |> String.first() |> String.upcase] end)
-    |> place_enemy_markers(arena)
-  end
-
-  defp get_random_encounter_from_file(level) do
-      Path.join(File.cwd!(), "lib/encounters.yaml")
-      |> YamlElixir.read_from_file()
-      |> elem(1)
-      |> Enum.filter(&encounter_level?(&1, level))
-      |> Enum.random
-      |> Map.get("encounter")
-  end
-
-  defp encounter_level?(encounter, level) do
-    encounter
-    |> Map.get("encounter")
-    |> Map.get("level") == level
-  end
-
-  defp place_enemy_markers(markers, arena) when length(markers) == 0, do: arena
-  defp place_enemy_markers(markers, arena) do
-    {arena_width, arena_height} = get_arena_dimensions(arena)
-    {x, y} = {Enum.random(0..(arena_width - 1)), Enum.random(0..(div(arena_height, 2) - 1))}
-    marker_to_place = Enum.random(markers)
-
-    if arena[x][y] != "O" do
-      place_enemy_markers(markers, arena)
-    else
-      place_enemy_markers(
-        List.delete(markers, marker_to_place),
-        put_in(arena[x][y], marker_to_place))
-    end
-  end
-
   defp do_add_rocks(arena, rock_count, _arena_width, _arena_height) when rock_count == 0,
     do: arena
 
@@ -137,6 +93,67 @@ defmodule ArenaGenerator do
       find_new_rock_cluster_location(arena, arena_width, arena_height)
     else
       {x, y}
+    end
+  end
+
+  @doc """
+  Add a random encounter to one side of the arena
+  """
+  @spec add_encounter(map, integer) :: map
+  def add_encounter(arena, 0), do: arena
+  def add_encounter(arena, level) do
+    level
+    |> get_random_encounter_from_file
+    |> Map.get("enemies")
+    |> Enum.reduce([], fn enemy, acc -> 
+      acc ++ [Map.keys(enemy) |> List.first() |> String.first() |> String.upcase] end)
+    |> place_enemy_markers(arena)
+  end
+
+  defp get_random_encounter_from_file(level) do
+      Path.join(File.cwd!(), "lib/encounters.yaml")
+      |> YamlElixir.read_from_file()
+      |> elem(1)
+      |> Enum.filter(&encounter_level?(&1, level))
+      |> Enum.random
+      |> Map.get("encounter")
+  end
+
+  defp encounter_level?(encounter, level) do
+    encounter
+    |> Map.get("encounter")
+    |> Map.get("level") == level
+  end
+
+  defp place_enemy_markers(markers, arena) when length(markers) == 0, do: arena
+  defp place_enemy_markers(markers, arena) do
+    {arena_width, arena_height} = get_arena_dimensions(arena)
+    {x, y} = {Enum.random(0..(arena_width - 1)), Enum.random(0..(div(arena_height, 2) - 1))}
+    marker_to_place = Enum.random(markers)
+
+    if arena[x][y] != "O" do
+      place_enemy_markers(markers, arena)
+    else
+      place_enemy_markers(
+        List.delete(markers, marker_to_place),
+        put_in(arena[x][y], marker_to_place))
+    end
+  end
+
+  @doc """
+  Add players to the other side of the arena
+  """
+  @spec add_players(map, integer) :: map 
+  def add_players(arena, 0), do: arena
+  def add_players(arena, players) do
+    {arena_width, arena_height} = get_arena_dimensions(arena)
+    {x, y} = {Enum.random(0..(arena_width - 1)), Enum.random((div(arena_height, 2) - 1)..arena_height - 1)}
+    if arena[x][y] != "O" do
+      add_players(arena, players)
+    else
+      add_players(
+        put_in(arena[x][y], "P"),
+        players - 1)
     end
   end
 

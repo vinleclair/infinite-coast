@@ -1,6 +1,8 @@
 defmodule ArenaGenerator.CLI do
   @default_size "12x12"
   @default_level 0
+  @default_players 0
+  @default_rocks false
 
   @moduledoc """
   CLI module for the arena generator
@@ -26,16 +28,17 @@ defmodule ArenaGenerator.CLI do
     System.halt(0)
   end
 
-  defp execute_command(%{size: size, rocks: rocks, level: level}) do
+  defp execute_command(%{size: size, rocks: rocks, level: level, players: players}) do
     {width, height} = parse_size(size)
     ArenaGenerator.generate_empty_arena(width, height)
     |> ArenaGenerator.add_rocks(rocks)
     |> ArenaGenerator.add_encounter(level)
+    |> ArenaGenerator.add_players(players)
   end
 
   defp parse_size(size) do
     if valid_size?(size) do
-      {width, height} = String.split(size, ~r/[xX]/, trim: true)
+      [width, height] = String.split(size, ~r/[xX]/, trim: true)
       {String.to_integer(width), String.to_integer(height)}
     else
       IO.puts(Constants.CLI.invalid_size())
@@ -52,8 +55,16 @@ defmodule ArenaGenerator.CLI do
   defp parse_args(args) do
     {opts, _, invalid} =
       OptionParser.parse(args,
-        strict: [help: :boolean, level: :integer, rocks: :boolean, size: :string],
-        aliases: [lvl: :level, r: :rocks, s: :size]
+        strict: [help: :boolean, 
+          level: :integer, 
+          players: :integer, 
+          rocks: :boolean, 
+          size: :string],
+        aliases: [h: :help, 
+          l: :level, 
+          p: :players, 
+          r: :rocks, 
+          s: :size]
       )
 
     if Enum.empty?(invalid) do
@@ -72,8 +83,9 @@ defmodule ArenaGenerator.CLI do
 
   defp add_default_values(opts) do
     opts
-    |> Map.put_new(:rocks, false)
+    |> Map.put_new(:rocks, @default_rocks)
     |> Map.put_new(:size, @default_size)
     |> Map.put_new(:level, @default_level)
+    |> Map.put_new(:players, @default_players)
   end
 end
