@@ -21,6 +21,7 @@ defmodule ArenaGenerator.CLI do
     |> add_default_values
     |> execute_command
     |> print_arena
+    |> print_treasure?
   end
 
   defp execute_command(%{help: true}) do
@@ -48,9 +49,41 @@ defmodule ArenaGenerator.CLI do
 
   defp valid_size?(size), do: String.match?(size, ~r/^(\d+)x(\d+)$/)
 
+  #TODO Fix print width/height
   defp print_arena(arena) do
-    for row <- arena, do: IO.puts(row |> elem(1) |> Map.values() |> List.to_string())
+    for row <- arena, do: IO.puts(row |> elem(1) |> Map.values() |> List.to_string()) 
   end
+
+  defp print_treasure?(_) do
+    answer = IO.gets "Print treasure table? (y/n) "
+    if answer |> String.downcase |> String.first == "y", do: print_treasure()
+  end
+
+  defp print_treasure() do
+    Path.join(File.cwd!(), "lib/treasures.yaml")
+    |> YamlElixir.read_from_file()
+    |> elem(1)
+    |> List.first
+    |> Map.get("treasure table")
+    |> do_print_treasure 
+  end
+
+  defp do_print_treasure(treasure) do
+    IO.puts "\n"
+    IO.puts "Treasure table"
+    IO.puts "--------------------"
+    IO.puts "Level #{Map.get(treasure, "level")}"
+    IO.puts "Coins:"
+    Enum.each(Map.get(treasure, "coins"),  fn {k, v} ->
+      IO.puts "\t#{k} --> #{v}" end) 
+    IO.puts "Treasures:"
+    Enum.each(Map.get(treasure, "treasures"), fn treasure ->
+      IO.puts "\td100 --> #{get_d100(treasure)}\t\tGems or Art Objects --> #{get_gems_or_art_objects(treasure)}\t\tMagic Items --> #{get_magic_items(treasure)}\n" end)
+  end
+
+  defp get_d100(treasure), do: treasure |> Map.get("treasure") |> Map.get("d100")
+  defp get_gems_or_art_objects(treasure), do: treasure |> Map.get("treasure") |> Map.get("Gems or Art Objects")
+  defp get_magic_items(treasure), do: treasure |> Map.get("treasure") |> Map.get("Magic Items")
 
   defp parse_args(args) do
     {opts, _, invalid} =
