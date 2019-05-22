@@ -111,7 +111,7 @@ defmodule ArenaGenerator do
   end
 
   defp get_random_encounter_from_file(level) do
-      Path.join(File.cwd!(), "lib/encounters.yaml")
+      Path.join(File.cwd!(), "config/encounters.yaml")
       |> YamlElixir.read_from_file()
       |> elem(1)
       |> Enum.filter(&encounter_level?(&1, level))

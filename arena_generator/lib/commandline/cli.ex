@@ -60,7 +60,7 @@ defmodule ArenaGenerator.CLI do
   end
 
   defp print_treasure() do
-    Path.join(File.cwd!(), "lib/treasures.yaml")
+    Path.join(File.cwd!(), "config/treasures.yaml")
     |> YamlElixir.read_from_file()
     |> elem(1)
     |> List.first
