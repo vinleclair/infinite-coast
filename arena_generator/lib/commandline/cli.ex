@@ -29,17 +29,21 @@ defmodule ArenaGenerator.CLI do
     System.halt(0)
   end
 
-  defp execute_command(%{size: size, 
-    rocks: rocks, 
-    level: level, 
-    players: players, 
-    treasure: treasure}) do
+  defp execute_command(%{
+         size: size,
+         rocks: rocks,
+         level: level,
+         players: players,
+         treasure: treasure
+       }) do
     {width, height} = parse_size(size)
-    arena = 
+
+    arena =
       ArenaGenerator.generate_empty_arena(width, height)
       |> ArenaGenerator.add_rocks(rocks)
       |> ArenaGenerator.add_encounter(level)
       |> ArenaGenerator.add_players(players)
+
     {arena, treasure}
   end
 
@@ -57,16 +61,18 @@ defmodule ArenaGenerator.CLI do
 
   defp print_arena({arena, treasure}) do
     {arena_width, arena_height} = ArenaGenerator.get_arena_dimensions(arena)
-    for y <- 0..arena_height - 1 do
-      for x <- 0..arena_width - 1 do
-        if x == arena_width - 1 do 
-          IO.write arena[x][y] 
-          IO.write "\n"
-        else 
-          IO.write arena[x][y]
+
+    for y <- 0..(arena_height - 1) do
+      for x <- 0..(arena_width - 1) do
+        if x == arena_width - 1 do
+          IO.write(arena[x][y])
+          IO.write("\n")
+        else
+          IO.write(arena[x][y])
         end
       end
     end
+
     if treasure, do: print_treasure()
   end
 
@@ -74,43 +80,52 @@ defmodule ArenaGenerator.CLI do
     Path.join(File.cwd!(), "config/treasures.yaml")
     |> YamlElixir.read_from_file()
     |> elem(1)
-    |> List.first
+    |> List.first()
     |> Map.get("treasure table")
-    |> do_print_treasure 
+    |> do_print_treasure
   end
 
   defp do_print_treasure(treasure) do
-    IO.puts "\n"
-    IO.puts "Treasure table"
-    IO.puts "--------------------"
-    IO.puts "Level #{Map.get(treasure, "level")}"
-    IO.puts "Coins:"
-    Enum.each(Map.get(treasure, "coins"),  fn {k, v} ->
-      IO.puts "\t#{k} --> #{v}" end) 
-    IO.puts "Treasures:"
+    IO.puts("\n")
+    IO.puts("Treasure table")
+    IO.puts("--------------------")
+    IO.puts("Level #{Map.get(treasure, "level")}")
+    IO.puts("Coins:")
+
+    Enum.each(Map.get(treasure, "coins"), fn {k, v} ->
+      IO.puts("\t#{k} --> #{v}")
+    end)
+
+    IO.puts("Treasures:")
+
     Enum.each(Map.get(treasure, "treasures"), fn treasure ->
-      IO.puts "\td100 --> #{get_d100(treasure)}\t\tGems or Art Objects --> #{get_gems_or_art_objects(treasure)}\t\tMagic Items --> #{get_magic_items(treasure)}\n" end)
+      IO.puts(
+        "\td100 --> #{get_d100(treasure)}\t\tGems or Art Objects --> #{
+          get_gems_or_art_objects(treasure)
+        }\t\tMagic Items --> #{get_magic_items(treasure)}\n"
+      )
+    end)
   end
 
   defp get_d100(treasure), do: treasure |> Map.get("treasure") |> Map.get("d100")
-  defp get_gems_or_art_objects(treasure), do: treasure |> Map.get("treasure") |> Map.get("Gems or Art Objects")
+
+  defp get_gems_or_art_objects(treasure),
+    do: treasure |> Map.get("treasure") |> Map.get("Gems or Art Objects")
+
   defp get_magic_items(treasure), do: treasure |> Map.get("treasure") |> Map.get("Magic Items")
 
   defp parse_args(args) do
     {opts, _, invalid} =
       OptionParser.parse(args,
-        strict: [help: :boolean, 
-          level: :integer, 
-          players: :integer, 
-          rocks: :boolean, 
+        strict: [
+          help: :boolean,
+          level: :integer,
+          players: :integer,
+          rocks: :boolean,
           size: :string,
-          treasure: :boolean],
-        aliases: [h: :help, 
-          l: :level, 
-          p: :players, 
-          r: :rocks, 
-          s: :size,
-          t: :treasure]
+          treasure: :boolean
+        ],
+        aliases: [h: :help, l: :level, p: :players, r: :rocks, s: :size, t: :treasure]
       )
 
     if Enum.empty?(invalid) do
