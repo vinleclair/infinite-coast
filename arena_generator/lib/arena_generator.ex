@@ -157,5 +157,9 @@ defmodule ArenaGenerator do
     end
   end
 
-  defp get_arena_dimensions(arena), do: {map_size(arena), map_size(arena[0])}
+  @doc """
+  Get width and height of the given arena
+  """
+  @spec get_arena_dimensions(map) :: integer
+  def get_arena_dimensions(arena), do: {map_size(arena), map_size(arena[0])}
 end

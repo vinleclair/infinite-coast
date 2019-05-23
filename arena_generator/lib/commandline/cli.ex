@@ -1,8 +1,9 @@
 defmodule ArenaGenerator.CLI do
-  @default_size "12x12"
   @default_level 0
   @default_players 0
   @default_rocks false
+  @default_size "12x12"
+  @default_treasure false
 
   @moduledoc """
   CLI module for the arena generator
@@ -21,7 +22,6 @@ defmodule ArenaGenerator.CLI do
     |> add_default_values
     |> execute_command
     |> print_arena
-    |> print_treasure?
   end
 
   defp execute_command(%{help: true}) do
@@ -29,12 +29,18 @@ defmodule ArenaGenerator.CLI do
     System.halt(0)
   end
 
-  defp execute_command(%{size: size, rocks: rocks, level: level, players: players}) do
+  defp execute_command(%{size: size, 
+    rocks: rocks, 
+    level: level, 
+    players: players, 
+    treasure: treasure}) do
     {width, height} = parse_size(size)
-    ArenaGenerator.generate_empty_arena(width, height)
-    |> ArenaGenerator.add_rocks(rocks)
-    |> ArenaGenerator.add_encounter(level)
-    |> ArenaGenerator.add_players(players)
+    arena = 
+      ArenaGenerator.generate_empty_arena(width, height)
+      |> ArenaGenerator.add_rocks(rocks)
+      |> ArenaGenerator.add_encounter(level)
+      |> ArenaGenerator.add_players(players)
+    {arena, treasure}
   end
 
   defp parse_size(size) do
@@ -49,14 +55,19 @@ defmodule ArenaGenerator.CLI do
 
   defp valid_size?(size), do: String.match?(size, ~r/^(\d+)x(\d+)$/)
 
-  #TODO Fix print width/height
-  defp print_arena(arena) do
-    for row <- arena, do: IO.puts(row |> elem(1) |> Map.values() |> List.to_string()) 
-  end
-
-  defp print_treasure?(_) do
-    answer = IO.gets "Print treasure table? (y/n) "
-    if answer |> String.downcase |> String.first == "y", do: print_treasure()
+  defp print_arena({arena, treasure}) do
+    {arena_width, arena_height} = ArenaGenerator.get_arena_dimensions(arena)
+    for y <- 0..arena_height - 1 do
+      for x <- 0..arena_width - 1 do
+        if x == arena_width - 1 do 
+          IO.write arena[x][y] 
+          IO.write "\n"
+        else 
+          IO.write arena[x][y]
+        end
+      end
+    end
+    if treasure, do: print_treasure()
   end
 
   defp print_treasure() do
@@ -92,12 +103,14 @@ defmodule ArenaGenerator.CLI do
           level: :integer, 
           players: :integer, 
           rocks: :boolean, 
-          size: :string],
+          size: :string,
+          treasure: :boolean],
         aliases: [h: :help, 
           l: :level, 
           p: :players, 
           r: :rocks, 
-          s: :size]
+          s: :size,
+          t: :treasure]
       )
 
     if Enum.empty?(invalid) do
@@ -116,9 +129,10 @@ defmodule ArenaGenerator.CLI do
 
   defp add_default_values(opts) do
     opts
-    |> Map.put_new(:rocks, @default_rocks)
-    |> Map.put_new(:size, @default_size)
     |> Map.put_new(:level, @default_level)
     |> Map.put_new(:players, @default_players)
+    |> Map.put_new(:rocks, @default_rocks)
+    |> Map.put_new(:size, @default_size)
+    |> Map.put_new(:treasure, @default_treasure)
   end
 end
