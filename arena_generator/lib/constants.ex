@@ -3,9 +3,12 @@ end
 
 defmodule Constants.CLI do
   @commands %{
-    "help" => "Prints this help message.",
+    "help" => "Prints this help message",
     "level" => "Specify the desired level of the encounters",
-    "size" => "Specify the desired size of the arena in a WIDTHxHEIGHT format."
+    "players" => "Specify the amount of player characters",
+    "rocks" => "Specify whether or not to add rock obstacles to the arena",
+    "size" => "Specify the desired size of the arena in a WIDTHxHEIGHT format",
+    "treasure" => "Specify whether or not to print the treasure table"
   }
 
   def help do
@@ -30,6 +33,7 @@ defmodule Constants.CLI do
   end
 
   defp usage do
-    "usage: garena [--help] [-lvl | --level[=]<int>] [-s | --size[=]<int>x<int>]"
+    "usage: garena [--help] [-lvl | --level[=]<int>] [-p | --players[=]<int>] 
+    [-r | --rocks] [-s | --size[=]<int>x<int>] [-t | --treasure]"
   end
 end
