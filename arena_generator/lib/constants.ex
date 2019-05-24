@@ -11,29 +11,37 @@ defmodule Constants.CLI do
     "treasure" => "Specify whether or not to print the treasure table"
   }
 
+  @usage "usage: garena [--help] [-lvl | --level[=]<int>] [-p | --players[=]<int>] 
+    [-r | --rocks] [-s | --size[=]<int>x<int>] [-t | --treasure]"
+
   def help do
     """
     Arena Generator is a simple arena generator for D&D.
 
-    #{usage()}
+    #{@usage}
 
-    #{for {command, description} <- @commands, do: "  --#{command}: #{description}\n"}
+    #{for {command, description} <- @commands, do: "\t--#{command}: #{description}\n"}
     """
   end
 
   def invalid_argument do
     """
     garena: invalid argument. See 'garena --help'. 
-    #{usage()}
+    #{@usage}
     """
   end
 
   def invalid_size do
-    "garena: invalid size. Format must be WIDTHxHEIGHT."
+    """
+    garena: invalid size. Format must be WIDTHxHEIGHT.
+    #{@usage}
+    """
   end
 
-  defp usage do
-    "usage: garena [--help] [-lvl | --level[=]<int>] [-p | --players[=]<int>] 
-    [-r | --rocks] [-s | --size[=]<int>x<int>] [-t | --treasure]"
-  end
+end
+
+defmodule Constants.Merchant do
+  @names ["Archimed", "Balthazar", "Divrash", "Helivri"]
+
+  def random_name, do: Enum.random(@names) 
 end

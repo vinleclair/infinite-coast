@@ -1,0 +1,377 @@
+---
+-
+    Item Name: Light Padded Armor
+    Normal:  5 gp
+    Cheap:  3 gp
+    Expensive:  8 gp
+-
+    Item Name: Light Leather Armor
+    Normal:  10 gp
+    Cheap:  7 gp
+    Expensive:  15 gp
+-
+    Item Name: Light Studded Leather Armor
+    Normal:  45 gp
+    Cheap:  33 gp
+    Expensive:  68 gp
+-
+    Item Name: Medium Hide Armor
+    Normal:  10 gp
+    Cheap:  7 gp
+    Expensive:  15 gp
+-
+    Item Name: Club
+    Normal:  1 sp
+    Cheap:  7 cp
+    Expensive:  2 sp
+-
+    Item Name: Dagger
+    Normal:  2 gp
+    Cheap:  1 gp
+    Expensive:  3 gp
+-
+    Item Name: Greatclub
+    Normal:  2 sp
+    Cheap:  1 sp
+    Expensive:  3 sp
+-
+    Item Name: Handaxe
+    Normal:  5 gp
+    Cheap:  3 gp
+    Expensive:  8 gp
+-
+    Item Name: Light Hammer
+    Normal:  2 gp
+    Cheap:  1 gp
+    Expensive:  3 gp
+-
+    Item Name: Quarterstaff
+    Normal:  2 sp
+    Cheap:  1 sp
+    Expensive:  3 sp
+-
+    Item Name: Light Crossbow
+    Normal:  25 gp
+    Cheap:  18 gp
+    Expensive:  38 gp
+-
+    Item Name: Dart
+    Normal:  5 cp
+    Cheap:  3 cp
+    Expensive:  8 cp
+-
+    Item Name: Shortbow
+    Normal:  25 gp
+    Cheap:  18 gp
+    Expensive:  38 gp
+-
+    Item Name: Sling
+    Normal:  1 sp
+    Cheap:  7 cp
+    Expensive:  2 sp
+-
+    Item Name: Whip
+    Normal:  2 gp
+    Cheap:  1 gp
+    Expensive:  3 gp
+-
+    Item Name: Blowgun
+    Normal:  10 gp
+    Cheap:  7 gp
+    Expensive:  15 gp
+-
+    Item Name: Hand Crossbow
+    Normal:  75 gp
+    Cheap:  56 gp
+    Expensive:  113 gp
+-
+    Item Name: Heavy Crossbow
+    Normal:  50 gp
+    Cheap:  38 gp
+    Expensive:  75 gp
+-
+    Item Name: Longbow
+    Normal:  50 gp
+    Cheap:  38 gp
+    Expensive:  75 gp
+-
+    Item Name: 20 Arrows 
+    Normal:  1 gp
+    Cheap:  7 sp
+    Expensive: 2 gp 
+-
+    Item Name: 50 Blowgun Needles
+    Normal:  1 gp
+    Cheap:  7 sp
+    Expensive:  2 gp
+-
+    Item Name: 20 Crossbow Bolts
+    Normal:  1 gp
+    Cheap:  7 sp
+    Expensive:  2 gp
+-
+    Item Name: 20 Sling Bullets
+    Normal:  4 cp
+    Cheap:  3 cp
+    Expensive:  6 cp
+-
+    Item Name: Backpack
+    Normal:  2 gp
+    Cheap:  1 gp
+    Expensive:  3 gp
+-
+    Item Name: Bedroll
+    Normal:  1 gp
+    Cheap:  7 sp
+    Expensive:  2 gp
+-
+    Item Name: Blanket
+    Normal:  5 sp
+    Cheap:  3 sp
+    Expensive:  8 sp
+-
+    Item Name: Block and Tackle
+    Normal:  1 gp
+    Cheap:  7 sp
+    Expensive:  2 gp
+-
+    Item Name: Glass Bottle
+    Normal:  2 gp
+    Cheap:  1 gp
+    Expensive:  3 gp
+-
+    Item Name: Candle
+    Normal:  1 cp
+    Cheap:  1 cp
+    Expensive:  2 cp
+-
+    Item Name: Crossbow Bolt Case
+    Normal:  1 gp
+    Cheap:  7 sp
+    Expensive:  2 gp
+-
+    Item Name: Map or Scroll Case
+    Normal:  1 gp
+    Cheap:  7 sp
+    Expensive:  2 gp
+-
+    Item Name: 10 Feet Chain
+    Normal:  5 gp
+    Cheap:  3 gp
+    Expensive:  8 gp
+-
+    Item Name: Chest
+    Normal:  5 gp
+    Cheap:  3 gp
+    Expensive:  8 gp
+-
+    Item Name: Climber's Kit
+    Normal:  25 gp
+    Cheap:  18 gp
+    Expensive:  38 gp
+-
+    Item Name: Traveler's Clothes
+    Normal:  2 gp
+    Cheap:  1 gp
+    Expensive:  3 gp
+-
+    Item Name: Crowbar
+    Normal:  2 gp
+    Cheap:  1 gp
+    Expensive:  3 gp
+-
+    Item Name: Flask or Tankard
+    Normal:  2 cp
+    Cheap:  1 cp
+    Expensive:  3 cp
+-
+    Item Name: Grappling Hook
+    Normal:  2 gp
+    Cheap:  1 gp
+    Expensive:  3 gp
+-
+    Item Name: Hammer
+    Normal:  1 gp
+    Cheap:  7 sp
+    Expensive:  2 gp
+-
+    Item Name: Healer's Kit
+    Normal:  5 gp
+    Cheap:  3 gp
+    Expensive:  8 gp
+-
+    Item Name: Hourglass
+    Normal:  25 gp
+    Cheap:  18 gp
+    Expensive:  38 gp
+-
+    Item Name: Hunting Trap
+    Normal:  5 gp
+    Cheap:  3 gp
+    Expensive:  8 gp
+-
+    Item Name: Ink
+    Normal:  10 gp
+    Cheap:  7 gp
+    Expensive:  15 gp
+-
+    Item Name: Ink Pen
+    Normal:  2 cp
+    Cheap:  1 cp
+    Expensive:  3 cp
+-
+    Item Name: Jug or Pitcher
+    Normal:  2 cp
+    Cheap:  1 cp
+    Expensive:  3 cp
+-
+    Item Name: Ladder
+    Normal:  1 sp
+    Cheap:  7 cp
+    Expensive:  2 sp
+-
+    Item Name: Lantern
+    Normal:  10 gp
+    Cheap:  7 gp
+    Expensive:  15 gp
+-
+    Item Name: Lock
+    Normal:  10 gp
+    Cheap:  7 gp
+    Expensive:  15 gp
+-
+    Item Name: Mess Kit
+    Normal:  2 sp
+    Cheap:  1 sp
+    Expensive:  3 sp
+-
+    Item Name: Steel Mirror
+    Normal:  5 gp
+    Cheap:  3 gp
+    Expensive:  8 gp
+-
+    Item Name: Paper
+    Normal:  2 sp
+    Cheap:  1 sp
+    Expensive:  3 sp
+-
+    Item Name: Parchment
+    Normal:  1 sp
+    Cheap:  7 cp
+    Expensive:  2 sp
+-
+    Item Name: Miner's Pick
+    Normal:  2 gp
+    Cheap:  1 gp
+    Expensive:  3 gp
+-
+    Item Name: Piton
+    Normal:  5 cp
+    Cheap:  3 cp
+    Expensive:  8 cp
+-
+    Item Name: Pole
+    Normal:  5 cp
+    Cheap:  3 cp
+    Expensive:  8 cp
+-
+    Item Name: Iron Pot
+    Normal:  2 gp
+    Cheap:  1 gp
+    Expensive:  3 gp
+-
+    Item Name: Pouch
+    Normal:  5 sp
+    Cheap:  3 sp
+    Expensive:  8 sp
+-
+    Item Name: Quiver
+    Normal:  1 gp
+    Cheap:  7 sp
+    Expensive:  2 gp
+-
+    Item Name: Rations
+    Normal:  5 sp
+    Cheap:  3 sp
+    Expensive:  8 sp
+-
+    Item Name: Rope
+    Normal:  1 gp
+    Cheap:  7 sp
+    Expensive:  2 gp
+-
+    Item Name: Sack
+    Normal:  1 cp
+    Cheap:  1 cp
+    Expensive:  2 cp
+-
+    Item Name: Shovel
+    Normal:  2 gp
+    Cheap:  1 gp
+    Expensive:  3 gp
+-
+    Item Name: Signal Whistle
+    Normal:  5 cp
+    Cheap:  3 cp
+    Expensive:  8 cp
+-
+    Item Name: Signet Ring
+    Normal:  5 gp
+    Cheap:  3 gp
+    Expensive:  8 gp
+-
+    Item Name: Spyglass
+    Normal:  1000 gp
+    Cheap:  750 gp
+    Expensive:  1500 gp
+-
+    Item Name: Tent
+    Normal:  2 gp
+    Cheap:  1 gp
+    Expensive:  3 gp
+-
+    Item Name: Tinderbox
+    Normal:  5 sp
+    Cheap:  3 sp
+    Expensive:  8 sp
+-
+    Item Name: Torch
+    Normal:  1 cp
+    Cheap:  1 cp 
+    Expensive: 2 cp
+-
+    Item Name: Vial
+    Normal:  1 gp
+    Cheap:  7 sp
+    Expensive:  2 gp
+-
+    Item Name: Waterskin
+    Normal:  2 sp
+    Cheap:  1 sp
+    Expensive:  3 sp
+-
+    Item Name: Cartographer's Tools
+    Normal:  15 gp
+    Cheap:  11 gp
+    Expensive:  23 gp
+-
+    Item Name: Jeweler's Tools
+    Normal:  25 gp
+    Cheap:  18 gp
+    Expensive:  38 gp
+-
+    Item Name: Tinker's Tools
+    Normal:  50 gp
+    Cheap:  38 gp
+    Expensive:  75 gp
+-
+    Item Name: Herbalism Kit
+    Normal:  5 gp
+    Cheap:  3 gp
+    Expensive:  8 gp
+-
+    Item Name: Navigator's Tools
+    Normal:  25 gp
+    Cheap:  18 gp
+    Expensive:  38 gp
+...
