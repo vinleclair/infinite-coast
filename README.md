@@ -1,3 +1,3 @@
-This is just a repo with a project (see tab -> project) for the feature set. Feel free to create your own repo with your code.
+# ArenaGenerator
 
-Also, the wiki (tab -> wiki) is there for project documentation.
+A simple command-line interface to generate Dungeons & Dragons arena scenarios.
