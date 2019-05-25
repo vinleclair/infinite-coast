@@ -148,7 +148,7 @@ defmodule ArenaGenerator do
   Add players to the other side of the arena
   """
   @spec add_players(arena, integer) :: arena
-  def add_players(arena, 0), do: arena
+  def add_players(arena, players) when players <= 0, do: arena
 
   def add_players(arena, players) do
     {arena_width, arena_height} = get_arena_dimensions(arena)
@@ -176,17 +176,17 @@ defmodule ArenaGenerator do
   @doc """
   Print the given arena to the console
   """
-  @spec print_arena(arena) :: IO.write()
-  def print_arena(arena) do
+  @spec print_arena(IO.device(), arena) :: IO.write()
+  def print_arena(device \\ :stdio, arena) do
     {arena_width, arena_height} = get_arena_dimensions(arena)
 
     for y <- 0..(arena_height - 1) do
       for x <- 0..(arena_width - 1) do
         if x == arena_width - 1 do
-          IO.write(arena[x][y])
-          IO.write("\n")
+          IO.write(device, arena[x][y])
+          IO.write(device, "\n")
         else
-          IO.write(arena[x][y])
+          IO.write(device, arena[x][y])
         end
       end
     end

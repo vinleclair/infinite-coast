@@ -2,6 +2,7 @@ defmodule ArenaGenerator.CLI do
   @default_merchant_level 1
   @default_player_level 0
   @default_players 0
+  @default_scenario_players 4
   @default_rocks false
   @default_size "12x12"
   @default_treasure false
@@ -28,8 +29,9 @@ defmodule ArenaGenerator.CLI do
     IO.puts(Constants.CLI.help())
   end
 
-  defp execute_command(%{scenario: true}) do
-    IO.puts "Scenario"
+  defp execute_command(%{scenario: true, players: players}) do
+    {_, result} = ScenarioGenerator.generate_random_scenario(players)
+    IO.puts result
   end
 
   defp execute_command(%{merchant: true, level: level}) do
@@ -109,6 +111,7 @@ defmodule ArenaGenerator.CLI do
     cond do
       Map.has_key?(opts, :scenario) ->
         opts
+        |> Map.put_new(:players, @default_scenario_players)
 
       Map.has_key?(opts, :merchant) ->
         opts

@@ -1,6 +1,3 @@
-defmodule Constants do
-end
-
 defmodule Constants.CLI do
   @commands %{
     "help" => "Prints this help message",
@@ -44,7 +41,7 @@ defmodule Constants.CLI do
 end
 
 defmodule Constants.Merchant do
-  @names [
+  @merchant_names [
     "Archimed",
     "Balthazar",
     "Divrash",
@@ -58,5 +55,23 @@ defmodule Constants.Merchant do
     "Zober"
   ]
 
-  def random_name, do: Enum.random(@names)
+  def random_name, do: Enum.random(@merchant_names)
+end
+
+defmodule Constants.Scenario do
+  @scenario_names [
+    "Scourge of the Howling Horde",
+    "The Sunless Citadel",
+    "Caves Of Shadow",
+    "The Shattered Gates of Slaughtergarde",
+    "Barrow of the Forgotten King",
+    "The Forge of Fury",
+    "The Sinister Spire",
+    "The Speaker in Dreams",
+    "Red Hand of Doom",
+    "Fortress of the Yuan-Ti",
+    "Expedition to the Demonweb Pits"
+  ]
+
+  def random_name, do: Enum.random(@scenario_names)
 end

@@ -6,7 +6,7 @@ defmodule Treasure do
   @doc """
   Print a treasure table
   """
-  @spec print_treasure() :: IO.puts
+  @spec print_treasure() :: IO.puts()
   def print_treasure() do
     Path.join(File.cwd!(), "config/treasures.yaml")
     |> YamlElixir.read_from_file()
@@ -44,5 +44,4 @@ defmodule Treasure do
     do: treasure |> Map.get("treasure") |> Map.get("Gems or Art Objects")
 
   defp get_magic_items(treasure), do: treasure |> Map.get("treasure") |> Map.get("Magic Items")
-
 end
