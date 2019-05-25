@@ -38,7 +38,7 @@ defmodule MerchantGenerator do
   """
   @spec generate_merchant_table(integer) :: merchant_table 
   def generate_merchant_table(player_level) when player_level < 1 or player_level > 20, 
-  do: {:error, "Player level must be between 1 and 20. Please try again."}
+  do: {:error, "Merchant level must be between 1 and 20. Please try again."}
 
   def generate_merchant_table(player_level) do
     name = Constants.Merchant.random_name

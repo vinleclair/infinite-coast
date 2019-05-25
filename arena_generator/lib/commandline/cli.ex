@@ -22,18 +22,19 @@ defmodule ArenaGenerator.CLI do
     |> sort_opts_into_map
     |> add_default_values
     |> execute_command
-    |> print_arena
   end
 
   defp execute_command(%{help: true}) do
     IO.puts(Constants.CLI.help())
-    System.halt(0)
+  end
+
+  defp execute_command(%{scenario: true}) do
+    IO.puts "Scenario"
   end
 
   defp execute_command(%{merchant: true, level: level}) do
     {_, result} = MerchantGenerator.generate_merchant_table(level)
     IO.puts result 
-    System.halt(0)
   end
 
   defp execute_command(%{
@@ -45,13 +46,13 @@ defmodule ArenaGenerator.CLI do
        }) do
     {width, height} = parse_size(size)
 
-    arena =
       ArenaGenerator.generate_empty_arena(width, height)
       |> ArenaGenerator.add_rocks(rocks)
       |> ArenaGenerator.add_encounter(level)
       |> ArenaGenerator.add_players(players)
-
-    {arena, treasure}
+      |> ArenaGenerator.print_arena()
+         
+    if treasure, do: Treasure.print_treasure()
   end
 
   defp parse_size(size) do
@@ -66,61 +67,6 @@ defmodule ArenaGenerator.CLI do
 
   defp valid_size?(size), do: String.match?(size, ~r/^(\d+)x(\d+)$/)
 
-  defp print_arena({arena, treasure}) do
-    {arena_width, arena_height} = ArenaGenerator.get_arena_dimensions(arena)
-
-    for y <- 0..(arena_height - 1) do
-      for x <- 0..(arena_width - 1) do
-        if x == arena_width - 1 do
-          IO.write(arena[x][y])
-          IO.write("\n")
-        else
-          IO.write(arena[x][y])
-        end
-      end
-    end
-
-    if treasure, do: print_treasure()
-  end
-
-  defp print_treasure() do
-    Path.join(File.cwd!(), "config/treasures.yaml")
-    |> YamlElixir.read_from_file()
-    |> elem(1)
-    |> List.first()
-    |> Map.get("treasure table")
-    |> do_print_treasure
-  end
-
-  defp do_print_treasure(treasure) do
-    IO.puts("\n")
-    IO.puts("Treasure table")
-    IO.puts("--------------------")
-    IO.puts("Level #{Map.get(treasure, "level")}")
-    IO.puts("Coins:")
-
-    Enum.each(Map.get(treasure, "coins"), fn {k, v} ->
-      IO.puts("\t#{k} --> #{v}")
-    end)
-
-    IO.puts("Treasures:")
-
-    Enum.each(Map.get(treasure, "treasures"), fn treasure ->
-      IO.puts(
-        "\td100 --> #{get_d100(treasure)}\t\tGems or Art Objects --> #{
-          get_gems_or_art_objects(treasure)
-        }\t\tMagic Items --> #{get_magic_items(treasure)}\n"
-      )
-    end)
-  end
-
-  defp get_d100(treasure), do: treasure |> Map.get("treasure") |> Map.get("d100")
-
-  defp get_gems_or_art_objects(treasure),
-    do: treasure |> Map.get("treasure") |> Map.get("Gems or Art Objects")
-
-  defp get_magic_items(treasure), do: treasure |> Map.get("treasure") |> Map.get("Magic Items")
-
   defp parse_args(args) do
     {opts, _, invalid} =
       OptionParser.parse(args,
@@ -130,10 +76,19 @@ defmodule ArenaGenerator.CLI do
           merchant: :boolean,
           players: :integer,
           rocks: :boolean,
+          scenario: :boolean,
           size: :string,
           treasure: :boolean
         ],
-        aliases: [h: :help, l: :level, m: :merchant, p: :players, r: :rocks, s: :size, t: :treasure]
+        aliases: [
+          h: :help, 
+          l: :level, 
+          m: :merchant, 
+          p: :players, 
+          r: :rocks, 
+          s: :size, 
+          t: :treasure
+        ]
       )
 
     if Enum.empty?(invalid) do
@@ -152,6 +107,9 @@ defmodule ArenaGenerator.CLI do
 
   defp add_default_values(opts) do
     cond do
+      Map.has_key?(opts, :scenario) ->
+        opts
+
       Map.has_key?(opts, :merchant) ->
         opts
         |> Map.put_new(:level, @default_merchant_level)

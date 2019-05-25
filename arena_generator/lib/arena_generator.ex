@@ -3,10 +3,12 @@ defmodule ArenaGenerator do
   Simple arena generator for D&D.
   """
 
+  @type arena :: map
+
   @doc """
   Generate an empty arena based on width and height input
   """
-  @spec generate_empty_arena(integer, integer) :: map
+  @spec generate_empty_arena(integer, integer) :: arena
   def generate_empty_arena(width, height) do
     Enum.reduce(0..(width - 1), %{}, fn x, x_acc ->
       Map.put(
@@ -22,7 +24,7 @@ defmodule ArenaGenerator do
   @doc """
   Add rock formations to an existing arena
   """
-  @spec add_rocks(map, boolean) :: map
+  @spec add_rocks(arena, boolean) :: arena
   def add_rocks(arena, false), do: arena
 
   def add_rocks(arena, true) do
@@ -83,13 +85,9 @@ defmodule ArenaGenerator do
 
   defp find_new_rock_cluster_location(arena, arena_width, arena_height) do
     {x, y} = {Enum.random(0..(arena_width - 1)), Enum.random(0..(arena_height - 1))}
-    invalid_location = false
 
-    for x2 <- -1..1 do
-      for y2 <- -1..1 do
-        if arena[x + x2][y + y2] == "X", do: invalid_location = true
-      end
-    end
+    invalid_location =
+      for x2 <- -1..1, do: for(y2 <- -1..1, do: if(arena[x + x2][y + y2] == "X", do: true))
 
     if invalid_location == true do
       find_new_rock_cluster_location(arena, arena_width, arena_height)
@@ -101,7 +99,7 @@ defmodule ArenaGenerator do
   @doc """
   Add a random encounter to one side of the arena
   """
-  @spec add_encounter(map, integer) :: map
+  @spec add_encounter(arena, integer) :: arena
   def add_encounter(arena, 0), do: arena
 
   def add_encounter(arena, level) do
@@ -149,7 +147,7 @@ defmodule ArenaGenerator do
   @doc """
   Add players to the other side of the arena
   """
-  @spec add_players(map, integer) :: map
+  @spec add_players(arena, integer) :: arena
   def add_players(arena, 0), do: arena
 
   def add_players(arena, players) do
@@ -172,6 +170,25 @@ defmodule ArenaGenerator do
   @doc """
   Get width and height of the given arena
   """
-  @spec get_arena_dimensions(map) :: integer
+  @spec get_arena_dimensions(arena) :: integer
   def get_arena_dimensions(arena), do: {map_size(arena), map_size(arena[0])}
+
+  @doc """
+  Print the given arena to the console
+  """
+  @spec print_arena(arena) :: IO.write()
+  def print_arena(arena) do
+    {arena_width, arena_height} = get_arena_dimensions(arena)
+
+    for y <- 0..(arena_height - 1) do
+      for x <- 0..(arena_width - 1) do
+        if x == arena_width - 1 do
+          IO.write(arena[x][y])
+          IO.write("\n")
+        else
+          IO.write(arena[x][y])
+        end
+      end
+    end
+  end
 end
