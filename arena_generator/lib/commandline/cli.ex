@@ -1,5 +1,6 @@
 defmodule ArenaGenerator.CLI do
-  @default_level 0
+  @default_merchant_level 1
+  @default_player_level 0
   @default_players 0
   @default_rocks false
   @default_size "12x12"
@@ -26,6 +27,12 @@ defmodule ArenaGenerator.CLI do
 
   defp execute_command(%{help: true}) do
     IO.puts(Constants.CLI.help())
+    System.halt(0)
+  end
+
+  defp execute_command(%{merchant: true, level: level}) do
+    {_, result} = MerchantGenerator.generate_merchant_table(level)
+    IO.puts result 
     System.halt(0)
   end
 
@@ -120,12 +127,13 @@ defmodule ArenaGenerator.CLI do
         strict: [
           help: :boolean,
           level: :integer,
+          merchant: :boolean,
           players: :integer,
           rocks: :boolean,
           size: :string,
           treasure: :boolean
         ],
-        aliases: [h: :help, l: :level, p: :players, r: :rocks, s: :size, t: :treasure]
+        aliases: [h: :help, l: :level, m: :merchant, p: :players, r: :rocks, s: :size, t: :treasure]
       )
 
     if Enum.empty?(invalid) do
@@ -143,11 +151,18 @@ defmodule ArenaGenerator.CLI do
   end
 
   defp add_default_values(opts) do
-    opts
-    |> Map.put_new(:level, @default_level)
-    |> Map.put_new(:players, @default_players)
-    |> Map.put_new(:rocks, @default_rocks)
-    |> Map.put_new(:size, @default_size)
-    |> Map.put_new(:treasure, @default_treasure)
+    cond do
+      Map.has_key?(opts, :merchant) ->
+        opts
+        |> Map.put_new(:level, @default_merchant_level)
+
+      true ->
+        opts
+        |> Map.put_new(:level, @default_player_level)
+        |> Map.put_new(:players, @default_players)
+        |> Map.put_new(:rocks, @default_rocks)
+        |> Map.put_new(:size, @default_size)
+        |> Map.put_new(:treasure, @default_treasure)
+    end
   end
 end
