@@ -29,7 +29,7 @@ defmodule ScenarioGenerator do
           ]
       end)
 
-    {:ok, scenario_file} = File.open("./#{file_name}.txt", [:write])
+    {:ok, scenario_file} = File.open("./scenario_#{file_name}.txt", [:write])
 
     for arena <- arenas do
       IO.puts(scenario_file, "Arena #{Enum.find_index(arenas, &(&1 == arena))}")
@@ -40,7 +40,7 @@ defmodule ScenarioGenerator do
 
     File.close(scenario_file)
     {:ok, 
-      "Scenario successfully generated. See './#{file_name}.txt'."}
+      "Scenario successfully generated. See './scenario_#{file_name}.txt'."}
   end
 
   defp get_file_name do
