@@ -12,3 +12,6 @@ erl_crash.dump
 
 # compiled file
 garena
+
+# generated files
+merchant_table_level_*.yaml
