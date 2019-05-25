@@ -10,8 +10,8 @@ defmodule Constants.CLI do
     "treasure" => "Specify whether or not to print the treasure table"
   }
 
-  @usage "usage: garena [--help] [-l | --level[=]<int>] [-m | --merchant] 
-  [-p | --players[=]<int>] [-r | --rocks] [-s | --size[=]<int>x<int>] [-t | --treasure]"
+  @usage "usage: garena [--help] [-l | --level[=]<int>] [-m | --merchant] [-p | --players[=]<int>] 
+  [-r | --rocks] [--scenario] [-s | --size[=]<int>x<int>] [-t | --treasure]"
 
   def help do
     """
