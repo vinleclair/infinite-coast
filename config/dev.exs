@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :garena, Garena.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "toks",
+  password: "limeman",
   database: "garena_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
