@@ -28,7 +28,7 @@ defmodule ArenaGenerator.MixProject do
       extra_applications: [:logger, :runtime_tools, :yamerl]
     ]
   end
-  
+
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
@@ -49,7 +49,10 @@ defmodule ArenaGenerator.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:ex_doc, "~> 0.19", only: :dev, runtime: false},
-      {:yaml_elixir, "~> 2.4.0"}
+      {:yaml_elixir, "~> 2.4.0"},
+      {:ueberauth, "~> 0.5"},
+      {:ueberauth_google, "~> 0.7"},
+      {:poison, "~> 3.1"}
     ]
   end
 

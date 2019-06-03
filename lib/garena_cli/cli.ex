@@ -31,12 +31,12 @@ defmodule ArenaGenerator.CLI do
 
   defp execute_command(%{scenario: true, players: players}) do
     {_, result} = ScenarioGenerator.generate_random_scenario(players)
-    IO.puts result
+    IO.puts(result)
   end
 
   defp execute_command(%{merchant: true, level: level}) do
     {_, result} = MerchantGenerator.generate_merchant_table(level)
-    IO.puts result 
+    IO.puts(result)
   end
 
   defp execute_command(%{
@@ -48,12 +48,12 @@ defmodule ArenaGenerator.CLI do
        }) do
     {width, height} = parse_size(size)
 
-      ArenaGenerator.generate_empty_arena(width, height)
-      |> ArenaGenerator.add_rocks(rocks)
-      |> ArenaGenerator.add_encounter(level)
-      |> ArenaGenerator.add_players(players)
-      |> ArenaGenerator.print_arena()
-         
+    ArenaGenerator.generate_empty_arena(width, height)
+    |> ArenaGenerator.add_rocks(rocks)
+    |> ArenaGenerator.add_encounter(level)
+    |> ArenaGenerator.add_players(players)
+    |> ArenaGenerator.print_arena()
+
     if treasure, do: Treasure.print_treasure()
   end
 
@@ -83,12 +83,12 @@ defmodule ArenaGenerator.CLI do
           treasure: :boolean
         ],
         aliases: [
-          h: :help, 
-          l: :level, 
-          m: :merchant, 
-          p: :players, 
-          r: :rocks, 
-          s: :size, 
+          h: :help,
+          l: :level,
+          m: :merchant,
+          p: :players,
+          r: :rocks,
+          s: :size,
           t: :treasure
         ]
       )
