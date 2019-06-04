@@ -20,7 +20,7 @@ defmodule GarenaWeb.SessionController do
         conn
         |> put_flash(:info, "Thank you for signing in!")
         |> put_session(:user_id, user.id)
-        |> redirect(to: Routes.page_path(conn, :index))
+        |> redirect(to: Routes.arena_path(conn, :index))
 
       {:error, _reason} ->
         conn

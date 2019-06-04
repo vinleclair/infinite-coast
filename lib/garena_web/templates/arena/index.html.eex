@@ -1,0 +1,40 @@
+<h1>Listing Arenas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Arena</th>
+      <th>Arena</th>
+      <th>Width</th>
+      <th>Height</th>
+      <th>Level</th>
+      <th>Players</th>
+      <th>Rocks</th>
+      <th>Treasure</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for arena <- @arenas do %>
+    <tr>
+      <td><%= arena.arena_id %></td>
+      <td><%= arena.arena %></td>
+      <td><%= arena.width%></td>
+      <td><%= arena.height%></td>
+      <td><%= arena.level %></td>
+      <td><%= arena.players %></td>
+      <td><%= arena.rocks %></td>
+      <td><%= arena.treasure %></td>
+
+      <td>
+        <%= link "Show", to: Routes.arena_path(@conn, :show, arena) %>
+        <%= link "Edit", to: Routes.arena_path(@conn, :edit, arena) %>
+        <%= link "Delete", to: Routes.arena_path(@conn, :delete, arena), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Arena", to: Routes.arena_path(@conn, :new) %></span>

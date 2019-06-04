@@ -1,5 +1,5 @@
 defmodule Garena.TestHelpers do
-  alias Garena.{Repo, User}
+  alias Garena.{Component, Repo, User}
 
   def user_fixture(attrs \\ %{}) do
     params =
@@ -17,5 +17,27 @@ defmodule Garena.TestHelpers do
       |> Repo.insert()
 
     user
+  end
+
+
+  def generated_arena_fixture(attrs \\ %{}) do
+    user = user_fixture()
+
+    arena_params =
+      attrs
+      |> Enum.into(%{
+        arena: "XWW\nXOO\nOPX",
+        arena_id: 312, 
+        level: 2,
+        players: 1,  
+        rocks: true,
+        width: 3,
+        height: 3,
+        treasure: false
+      })
+
+    {:ok, arena} = Component.create_arena(user, arena_params)
+
+    arena
   end
 end

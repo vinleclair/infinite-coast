@@ -1,0 +1,46 @@
+<div class="flex justify-center mt-10 xs:mx-4 sm:mx-0">
+  <%= form_for @changeset, @action, [class: "w-full max-w-md"], fn f -> %>
+    <%= if @changeset.action do %>
+      <div class="alert bg-red-lighter border border-red-darker text-red-darker px-4 py-3 rounded relative">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %>
+    <div class="bg-grey-lighter shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+      <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3">
+          <%= label f, "Arena Width", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>
+          <%= select f, :width, 4..24, value: "12x12", class: "appearance-none block w-full bg-tca-gray-2 text-tca-blue-8 border border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" %>
+          <%= error_tag f, :width %>
+
+          <%= label f, "Arena Height", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>
+          <%= select f, :height, 4..24, value: "12x12", class: "appearance-none block w-full bg-tca-gray-2 text-tca-blue-8 border border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" %>
+          <%= error_tag f, :height %>
+
+          <%= label f, "Player Level", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>
+          <%= select f, :level, 0..20, class: "appearance-none block w-full bg-tca-gray-2 text-tca-blue-8 border border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" %>
+          <%= error_tag f, :level %>
+
+          <%= label f, "Player amount", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>
+          <%= select f, :players, 0..4, class: "appearance-none block w-full bg-tca-gray-2 text-tca-blue-8 border border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" %>
+          <%= error_tag f, :players %>
+
+          <%= label f, "Rocks?", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>
+          <%= checkbox f, :rocks, class: "appearance-none block w-full bg-tca-gray-2 text-tca-blue-8 border border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" %>
+          <%= error_tag f, :rocks %>
+
+          <%= label f, "Treasure?", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>
+          <%= checkbox f, :treasure, class: "appearance-none block w-full bg-tca-gray-2 text-tca-blue-8 border border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" %>
+          <%= error_tag f, :treasure %>
+        </div>
+      </div>
+      <div class="-mx-3 md:flex mb-2">
+        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+          <div>
+            <%= submit "Generate Arena", class: "bg-green-dark hover:bg-green-light text-white text-sm uppercase font-bold py-2 px-4 rounded shadow-md" %>
+            <%= link "Cancel", to: Routes.arena_path(@conn, :index), data: [confirm: "Are you sure?"], class: "text-grey-darker text-sm uppercase font-bold no-underline px-4" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

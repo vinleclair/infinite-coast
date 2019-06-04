@@ -1,0 +1,48 @@
+<h1>Show Arena</h1>
+
+<ul>
+
+  <li>
+    <strong>Arena:</strong>
+    <%= @arena.arena_id %>
+  </li>
+
+  <li>
+    <strong>Arena:</strong>
+    <%= @arena.arena %>
+  </li>
+
+  <li>
+    <strong>Width:</strong>
+    <%= @arena.width %>
+  </li>
+
+  <li>
+    <strong>Height:</strong>
+    <%= @arena.height %>
+  </li>
+
+  <li>
+    <strong>Level:</strong>
+    <%= @arena.level %>
+  </li>
+
+  <li>
+    <strong>Players:</strong>
+    <%= @arena.players %>
+  </li>
+
+  <li>
+    <strong>Rocks:</strong>
+    <%= @arena.rocks %>
+  </li>
+
+  <li>
+    <strong>Treasure:</strong>
+    <%= @arena.treasure %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.arena_path(@conn, :edit, @arena) %></span>
+<span><%= link "Back", to: Routes.arena_path(@conn, :index) %></span>
