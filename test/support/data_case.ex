@@ -22,6 +22,7 @@ defmodule Garena.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Garena.DataCase
+      import Garena.TestHelpers
     end
   end
 

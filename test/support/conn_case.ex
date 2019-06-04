@@ -20,7 +20,7 @@ defmodule GarenaWeb.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
       alias GarenaWeb.Router.Helpers, as: Routes
-
+      import Garena.TestHelpers
       # The default endpoint for testing
       @endpoint GarenaWeb.Endpoint
     end
