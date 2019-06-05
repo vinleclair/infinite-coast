@@ -3,6 +3,6 @@ defmodule GarenaWeb.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")
-    assert html_response(conn, 200) =~ "Welcome to Garena!"
+    assert html_response(conn, 200) =~ "Welcome to Infinite Coast!"
   end
 end
