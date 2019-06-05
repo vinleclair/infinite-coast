@@ -11,10 +11,9 @@ erl_crash.dump
 /config/*.secret.exs
 .elixir_ls/
 
-# compiled file
-garena
-
 # generated files
+garena
+!garena/
 merchant_table_level_*.yaml
 scenario_*.txt
 
