@@ -1,5 +1,12 @@
 ---
 - encounter:
+    level: 0
+    enemies:
+      - wolf:
+          hp: 8 
+      - wolf:
+          hp: 7 
+- encounter:
     level: 1
     enemies:
       - goblin:
@@ -8,13 +15,6 @@
           hp: 13
       - goblin:
           hp: 14
-- encounter:
-    level: 1
-    enemies:
-      - wolf:
-          hp: 8 
-      - wolf:
-          hp: 7 
 - encounter:
     level: 1
     enemies:
@@ -28,6 +28,96 @@
           hp: 10
 - encounter:
     level: 2
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 3
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 4 
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 5
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 6
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 7
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 8
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 9
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 10
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 11
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 12
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 13
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 14
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 15
+    enemies:
+      - beholder:
+          hp: 35 
+- encounter:
+    level: 16
+    enemies:
+      - beholder:
+          hp: 35 
+- encounter:
+    level: 17
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 18
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 19
+    enemies:
+      - beholder:
+          hp: 35
+- encounter:
+    level: 20
     enemies:
       - beholder:
           hp: 35

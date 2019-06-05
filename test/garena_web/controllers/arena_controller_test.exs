@@ -3,7 +3,6 @@ defmodule GarenaWeb.ArenaControllerTest do
 
   @create_attrs %{
     arena: "some arena",
-    arena_id: 42,
     level: 42,
     players: 42,
     rocks: true,
@@ -13,7 +12,6 @@ defmodule GarenaWeb.ArenaControllerTest do
   }
   @update_attrs %{
     arena: "some updated arena",
-    arena_id: 43,
     level: 43,
     players: 43,
     rocks: false,
@@ -23,7 +21,6 @@ defmodule GarenaWeb.ArenaControllerTest do
   }
   @invalid_attrs %{
     arena: nil,
-    arena_id: nil,
     level: nil,
     players: nil,
     rocks: nil,

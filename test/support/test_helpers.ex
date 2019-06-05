@@ -27,7 +27,6 @@ defmodule Garena.TestHelpers do
       attrs
       |> Enum.into(%{
         arena: "XWW\nXOO\nOPX",
-        arena_id: 312, 
         level: 2,
         players: 1,  
         rocks: true,

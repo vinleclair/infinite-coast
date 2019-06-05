@@ -3,7 +3,6 @@ defmodule Garena.Repo.Migrations.CreateArenas do
 
   def change do
     create table(:arenas) do
-      add :arena_id, :integer
       add :arena, :string
       add :width, :integer
       add :height, :integer
@@ -16,7 +15,6 @@ defmodule Garena.Repo.Migrations.CreateArenas do
       timestamps()
     end
 
-    create unique_index(:arenas, [:arena_id])
     create index(:arenas, [:user_id])
   end
 end

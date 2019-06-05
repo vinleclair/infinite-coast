@@ -4,12 +4,7 @@
 
   <li>
     <strong>Arena:</strong>
-    <%= @arena.arena_id %>
-  </li>
-
-  <li>
-    <strong>Arena:</strong>
-    <%= @arena.arena %>
+    <%= text_to_html(@arena.arena) %>
   </li>
 
   <li>

@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th>Arena</th>
-      <th>Arena</th>
       <th>Width</th>
       <th>Height</th>
       <th>Level</th>
@@ -18,8 +17,7 @@
   <tbody>
 <%= for arena <- @arenas do %>
     <tr>
-      <td><%= arena.arena_id %></td>
-      <td><%= arena.arena %></td>
+      <td><%= text_to_html(arena.arena) %></td>
       <td><%= arena.width%></td>
       <td><%= arena.height%></td>
       <td><%= arena.level %></td>

@@ -2,7 +2,7 @@ defmodule GarenaWeb.ArenaController do
   use GarenaWeb, :controller
 
   alias Garena.Component
-  alias Garena.Component.Arena
+  alias Garena.Component.{Arena, ArenaGeneratorWebWrapper}
 
   def index(conn, _params) do
     arenas = Component.list_arenas()
@@ -15,6 +15,8 @@ defmodule GarenaWeb.ArenaController do
   end
 
   def create(conn, %{"arena" => arena_params}) do
+    arena_params = ArenaGeneratorWebWrapper.add_arena(arena_params) 
+
     IO.inspect arena_params
     case Component.create_arena(conn.assigns.user, arena_params) do
       {:ok, arena} ->
