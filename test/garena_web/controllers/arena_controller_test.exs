@@ -8,7 +8,6 @@ defmodule GarenaWeb.ArenaControllerTest do
     rocks: true,
     width: 3,
     height: 3,
-    treasure: true
   }
   @update_attrs %{
     arena: "some updated arena",
@@ -17,7 +16,6 @@ defmodule GarenaWeb.ArenaControllerTest do
     rocks: false,
     width: 4,
     height: 4,
-    treasure: false
   }
   @invalid_attrs %{
     arena: nil,
@@ -26,7 +24,6 @@ defmodule GarenaWeb.ArenaControllerTest do
     rocks: nil,
     width: nil,
     height: nil,
-    treasure: nil
   }
 
   describe "index" do

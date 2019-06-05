@@ -31,8 +31,7 @@ defmodule Garena.TestHelpers do
         players: 1,  
         rocks: true,
         width: 3,
-        height: 3,
-        treasure: false
+        height: 3
       })
 
     {:ok, arena} = Component.create_arena(user, arena_params)
