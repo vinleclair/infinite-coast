@@ -1,5 +1,0 @@
-<h1>Edit Arena</h1>
-
-<%= render "form.html", Map.put(assigns, :action, Routes.arena_path(@conn, :update, @arena)) %>
-
-<span><%= link "Back", to: Routes.arena_path(@conn, :index) %></span>

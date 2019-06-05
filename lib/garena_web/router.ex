@@ -17,7 +17,7 @@ defmodule GarenaWeb.Router do
   scope "/", GarenaWeb do
     pipe_through :browser
 
-    resources "/arenas", ArenaController
+    resources "/arenas", ArenaController, except: [:edit, :update]
     get "/", PageController, :index
   end
 

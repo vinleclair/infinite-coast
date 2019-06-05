@@ -25,7 +25,6 @@
 
       <td>
         <%= link "Show", to: Routes.arena_path(@conn, :show, arena) %>
-        <%= link "Edit", to: Routes.arena_path(@conn, :edit, arena) %>
         <%= link "Delete", to: Routes.arena_path(@conn, :delete, arena), method: :delete, data: [confirm: "Are you sure?"] %>
       </td>
     </tr>

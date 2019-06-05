@@ -34,5 +34,4 @@
 
 </ul>
 
-<span><%= link "Edit", to: Routes.arena_path(@conn, :edit, @arena) %></span>
 <span><%= link "Back", to: Routes.arena_path(@conn, :index) %></span>
