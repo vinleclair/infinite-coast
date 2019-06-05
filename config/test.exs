@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :garena, Garena.Repo,
-  username: "toks",
-  password: "limeman",
+  username: System.get_env("POSTGRES_USERNAME"),
+  password: System.get_env("POSTGRES_PASSWORD"),
   database: "garena_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
