@@ -1,4 +1,4 @@
-# ArenaGenerator
+# Infinite Coast 
 
 A simple command-line and web interface to generate Dungeons & Dragons arena scenarios.
 
