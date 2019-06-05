@@ -9,7 +9,6 @@
       <th>Level</th>
       <th>Players</th>
       <th>Rocks</th>
-      <th>Treasure</th>
 
       <th></th>
     </tr>
@@ -23,7 +22,6 @@
       <td><%= arena.level %></td>
       <td><%= arena.players %></td>
       <td><%= arena.rocks %></td>
-      <td><%= arena.treasure %></td>
 
       <td>
         <%= link "Show", to: Routes.arena_path(@conn, :show, arena) %>

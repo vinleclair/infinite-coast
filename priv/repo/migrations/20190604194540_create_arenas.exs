@@ -9,7 +9,6 @@ defmodule Garena.Repo.Migrations.CreateArenas do
       add :level, :integer
       add :players, :integer
       add :rocks, :boolean, default: false, null: false
-      add :treasure, :boolean, default: false, null: false
       add :user_id, references(:users, on_delete: :nothing)
 
       timestamps()

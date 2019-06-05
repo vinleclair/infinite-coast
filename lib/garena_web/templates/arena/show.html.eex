@@ -32,11 +32,6 @@
     <%= @arena.rocks %>
   </li>
 
-  <li>
-    <strong>Treasure:</strong>
-    <%= @arena.treasure %>
-  </li>
-
 </ul>
 
 <span><%= link "Edit", to: Routes.arena_path(@conn, :edit, @arena) %></span>

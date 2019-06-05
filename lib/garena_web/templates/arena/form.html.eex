@@ -28,9 +28,6 @@
           <%= checkbox f, :rocks, class: "appearance-none block w-full bg-tca-gray-2 text-tca-blue-8 border border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" %>
           <%= error_tag f, :rocks %>
 
-          <%= label f, "Treasure?", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>
-          <%= checkbox f, :treasure, class: "appearance-none block w-full bg-tca-gray-2 text-tca-blue-8 border border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" %>
-          <%= error_tag f, :treasure %>
         </div>
       </div>
       <div class="-mx-3 md:flex mb-2">
