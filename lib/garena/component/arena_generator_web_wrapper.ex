@@ -8,7 +8,6 @@ defmodule Garena.Component.ArenaGeneratorWebWrapper do
   def add_arena(arena_params) do
     arena_params = Map.new(arena_params, fn {key, value} -> {key, convert(value)} end)
 
-    IO.inspect arena_params
     arena =
       ArenaGenerator.generate_empty_arena(arena_params["width"], arena_params["height"])
       |> ArenaGenerator.add_rocks(arena_params["rocks"])
