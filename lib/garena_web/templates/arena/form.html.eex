@@ -9,11 +9,11 @@
       <div class="-mx-3 md:flex mb-6">
         <div class="md:w-full px-3">
           <%= label f, "Arena Width", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>
-          <%= select f, :width, 4..12, class: "appearance-none block w-full bg-tca-gray-2 text-tca-blue-8 border border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" %>
+          <%= select f, :width, 4..24, class: "appearance-none block w-full bg-tca-gray-2 text-tca-blue-8 border border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" %>
           <%= error_tag f, :width %>
 
           <%= label f, "Arena Height", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>
-          <%= select f, :height, 4..12, class: "appearance-none block w-full bg-tca-gray-2 text-tca-blue-8 border border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" %>
+          <%= select f, :height, 4..24, class: "appearance-none block w-full bg-tca-gray-2 text-tca-blue-8 border border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey" %>
           <%= error_tag f, :height %>
 
           <%= label f, "Player Level", class: "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1" %>

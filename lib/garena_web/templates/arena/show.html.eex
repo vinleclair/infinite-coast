@@ -1,37 +1,25 @@
-<h1>Show Arena</h1>
-
-<ul>
-
-  <li>
-    <strong>Arena:</strong>
-    <%= text_to_html(@arena.arena) %>
-  </li>
-
-  <li>
-    <strong>Width:</strong>
-    <%= @arena.width %>
-  </li>
-
-  <li>
-    <strong>Height:</strong>
-    <%= @arena.height %>
-  </li>
-
-  <li>
-    <strong>Level:</strong>
-    <%= @arena.level %>
-  </li>
-
-  <li>
-    <strong>Players:</strong>
-    <%= @arena.players %>
-  </li>
-
-  <li>
-    <strong>Rocks:</strong>
-    <%= @arena.rocks %>
-  </li>
-
-</ul>
-
-<span><%= link "Back", to: Routes.arena_path(@conn, :index) %></span>
+<div class="mt-10 container mx-auto">
+  <div class="bg-grey-lighter shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+    <div class="-mx-3 md:flex mb-6">
+      <div class="md:w-full px-3">
+        <span class="text-grey-darkest font-bold md:text-2xl sm:text-xl"><%= "Arena " <> (@arena.id |> Integer.to_string) %></span><br>
+        Width: <%= @arena.width %> // Height: <%= @arena.height %> // Level: <%= @arena.level %> // Players: <%= @arena.players %> // Rocks: <%= @arena.rocks %>
+      </div>
+    </div>
+    <div class="-mx-3 md:flex mb-6 justify-center">
+        <div class="md:w-full px-3 mb-6 md:mb-0 border-b-4 pb-4 flex justify-center">
+          <%= text_to_html(@arena.arena, attributes: [class: "font-bold font-mono text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl"]) %>
+        </div>
+    </div>
+    <div class="-mx-3 flex">
+      <div class="w-1/2 px-3 text-left">
+        <%= link "Back", to: Routes.arena_path(@conn, :index), class: "no-underline hover:underline uppercase text-grey-darker" %>
+      </div>
+      <div class="w-1/2 px-3 text-right">
+        <%= if @conn.assigns.user && @conn.assigns.user.id == @arena.user_id do %>
+          <%= link "Delete", to: Routes.arena_path(@conn, :delete, @arena), method: :delete, data: [confirm: "Are you sure?"], class: "no-underline hover:underline uppercase text-red-dark" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,7 +19,7 @@ defmodule GarenaWeb.ArenaControllerTest do
   describe "index" do
     test "lists all arenas", %{conn: conn} do
       conn = get(conn, Routes.arena_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Arenas"
+      assert html_response(conn, 200) =~ "Generated Arenas"
     end
   end
 
@@ -95,6 +95,16 @@ defmodule GarenaWeb.ArenaControllerTest do
 
       assert html_response(conn, 302) =~
                "<html><body>You are being <a href=\"/arenas/#{arena.id}\">redirected</a>.</body></html>"
+    end
+  end
+
+  describe "show arena" do
+    test "shows chosen arena", %{conn: conn} do
+      user = user_fixture()
+      arena = generated_arena_fixture(user)
+      conn = get(conn, Routes.arena_path(conn, :show, arena))
+
+      assert html_response(conn, 200) =~ (arena.id |> Integer.to_string)
     end
   end
 end

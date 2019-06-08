@@ -3,7 +3,7 @@ defmodule Garena.Repo.Migrations.CreateArenas do
 
   def change do
     create table(:arenas) do
-      add :arena, :string
+      add :arena, :text
       add :width, :integer
       add :height, :integer
       add :level, :integer
