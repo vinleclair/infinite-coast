@@ -18,7 +18,6 @@ defmodule Garena.Component.ArenaGeneratorWebWrapper do
     Map.put_new(arena_params, "arena", arena)
   end
 
-
   # helper function that converts string to boolean or integer 
   defp convert("true"), do: true
   defp convert("false"), do: false

@@ -12,7 +12,7 @@ defmodule Garena.ComponentTest do
       players: 42,
       rocks: true,
       width: 3,
-      height: 3,
+      height: 3
     }
     @update_attrs %{
       arena: "some updated arena",
@@ -20,7 +20,7 @@ defmodule Garena.ComponentTest do
       players: 43,
       rocks: false,
       width: 4,
-      height: 4,
+      height: 4
     }
     @invalid_attrs %{
       arena: nil,
@@ -28,7 +28,7 @@ defmodule Garena.ComponentTest do
       players: nil,
       rocks: nil,
       width: nil,
-      height: nil,
+      height: nil
     }
 
     def arena_fixture(attrs \\ %{}) do

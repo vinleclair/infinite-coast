@@ -19,16 +19,14 @@ defmodule Garena.TestHelpers do
     user
   end
 
-
-  def generated_arena_fixture(attrs \\ %{}) do
-    user = user_fixture()
-
+  def generated_arena_fixture(%Garena.User{} = user, attrs \\ %{}) do
     arena_params =
       attrs
       |> Enum.into(%{
+        arena_id: 273,
         arena: "XWW\nXOO\nOPX",
         level: 2,
-        players: 1,  
+        players: 1,
         rocks: true,
         width: 3,
         height: 3

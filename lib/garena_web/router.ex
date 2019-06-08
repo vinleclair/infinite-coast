@@ -14,17 +14,27 @@ defmodule GarenaWeb.Router do
     plug(:accepts, ["json"])
   end
 
+  pipeline :auth do
+    plug GarenaWeb.Plugs.RequireAuth
+  end
+
+  scope "/", GarenaWeb do
+    pipe_through [:browser, :auth]
+
+    resources "/arenas", ArenaController, only: [:new, :create, :delete]
+  end
+
   scope "/", GarenaWeb do
     pipe_through :browser
 
-    resources "/arenas", ArenaController, except: [:edit, :update]
+    resources "/arenas", ArenaController, only: [:index, :show]
     get "/", PageController, :index
   end
 
   scope "/auth", GarenaWeb do
     pipe_through :browser
 
-    get "/signout", SessionController, :delete 
+    get "/signout", SessionController, :delete
     get "/:provider", SessionController, :request
     get "/:provider/callback", SessionController, :create
   end

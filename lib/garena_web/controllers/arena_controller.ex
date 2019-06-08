@@ -4,6 +4,8 @@ defmodule GarenaWeb.ArenaController do
   alias Garena.Component
   alias Garena.Component.{Arena, ArenaGeneratorWebWrapper}
 
+  plug :check_arena_owner when action in [:delete]
+
   def index(conn, _params) do
     arenas = Component.list_arenas()
     render(conn, "index.html", arenas: arenas)
@@ -43,5 +45,22 @@ defmodule GarenaWeb.ArenaController do
     conn
     |> put_flash(:info, "Arena deleted successfully.")
     |> redirect(to: Routes.arena_path(conn, :index))
+  end
+
+  defp check_arena_owner(conn, _params) do
+    %{params: %{"id" => arena_id}} = conn
+
+    arena = Garena.Repo.get(Arena, arena_id)
+
+    case arena.user_id == conn.assigns.user.id do
+      true ->
+        conn
+
+      false ->
+        conn
+        |> put_flash(:error, "You cannot do that")
+        |> redirect(to: Routes.arena_path(conn, :show, arena))
+        |> halt()
+    end
   end
 end

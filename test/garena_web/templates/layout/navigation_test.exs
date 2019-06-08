@@ -18,7 +18,6 @@ defmodule GarenaWeb.NavigationTest do
     assert html_response(conn, 200) =~ "Sign out"
   end
 
-
   test "shows a link to the arenas index", %{conn: conn} do
     conn = get(conn, "/")
 

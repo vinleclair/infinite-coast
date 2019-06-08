@@ -6,14 +6,14 @@ defmodule GarenaWeb.ArenaControllerTest do
     players: "3",
     rocks: "true",
     width: "5",
-    height: "5",
+    height: "5"
   }
   @invalid_attrs %{
     level: nil,
     players: nil,
     rocks: nil,
     width: nil,
-    height: nil,
+    height: nil
   }
 
   describe "index" do
@@ -25,8 +25,14 @@ defmodule GarenaWeb.ArenaControllerTest do
 
   describe "new arena" do
     test "renders form", %{conn: conn} do
-      conn = get(conn, Routes.arena_path(conn, :new))
-      assert html_response(conn, 200) =~ "type=\"submit\">Generate Arena</button>"  
+      user = user_fixture()
+
+      conn =
+        conn
+        |> assign(:user, user)
+        |> get(Routes.arena_path(conn, :new))
+
+      assert html_response(conn, 200) =~ "type=\"submit\">Generate Arena</button>"
     end
   end
 
@@ -60,14 +66,35 @@ defmodule GarenaWeb.ArenaControllerTest do
 
   describe "delete arena" do
     test "deletes chosen arena", %{conn: conn} do
-      arena = generated_arena_fixture()
+      user = user_fixture()
+      arena = generated_arena_fixture(user)
 
-      conn = delete(conn, Routes.arena_path(conn, :delete, arena))
+      conn =
+        conn
+        |> assign(:user, user)
+        |> delete(Routes.arena_path(conn, :delete, arena))
+
       assert redirected_to(conn) == Routes.arena_path(conn, :index)
 
       assert_error_sent 404, fn ->
         get(conn, Routes.arena_path(conn, :show, arena))
       end
+    end
+
+    test "cannot delete chosen video", %{conn: conn} do
+      user1 = user_fixture()
+      user2 = user_fixture()
+      arena = generated_arena_fixture(user2)
+
+      conn =
+        conn
+        |> assign(:user, user1)
+        |> delete(Routes.arena_path(conn, :delete, arena))
+
+      assert redirected_to(conn) == Routes.arena_path(conn, :show, arena)
+
+      assert html_response(conn, 302) =~
+               "<html><body>You are being <a href=\"/arenas/#{arena.id}\">redirected</a>.</body></html>"
     end
   end
 end
