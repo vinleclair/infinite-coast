@@ -1,14 +1,20 @@
 defmodule GarenaWeb.ArenaController do
   use GarenaWeb, :controller
+  use Rummage.Phoenix.Controller
 
-  alias Garena.Component
+  alias Garena.{Component, Repo}
   alias Garena.Component.{Arena, ArenaGeneratorWebWrapper}
 
   plug :check_arena_owner when action in [:delete]
 
-  def index(conn, _params) do
-    arenas = Component.list_arenas()
-    render(conn, "index.html", arenas: arenas)
+  def index(conn, params) do
+    {query, rummage} =
+      Arena
+      |> Arena.rummage(params["rummage"])
+
+    arenas = Repo.all(query)
+
+    render(conn, "index.html", arenas: arenas, rummage: rummage)
   end
 
   def new(conn, _params) do

@@ -5,6 +5,11 @@
         Generated Arenas
       </div>
     </div>
+    <div class="-mx-3 md:flex mb-6">
+      <div class="md:w-full px-3 text-grey-darkest font-bold uppercase text-sm">
+        Sort by: <%= sort_link @conn, @rummage, [field: :width] %> ~ <%= sort_link @conn, @rummage, [field: :height] %> 
+      </div>
+    </div>
     <%= for arena <- @arenas do %>
       <div class="-mx-3 md:flex mb-6">
         <div class="md:w-full px-3">
@@ -18,5 +23,9 @@
         </div>
       </div>
     <% end %>
+    
+    <div class="flex px-3 justify-center">
+      <%= pagination_link(@conn, @rummage) %>
+    </div>
   </div>
 </div>

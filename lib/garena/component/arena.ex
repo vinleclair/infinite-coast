@@ -1,5 +1,6 @@
 defmodule Garena.Component.Arena do
   use Ecto.Schema
+  use Rummage.Ecto
   import Ecto.Changeset
 
   schema "arenas" do

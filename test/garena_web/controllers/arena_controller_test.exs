@@ -104,7 +104,7 @@ defmodule GarenaWeb.ArenaControllerTest do
       arena = generated_arena_fixture(user)
       conn = get(conn, Routes.arena_path(conn, :show, arena))
 
-      assert html_response(conn, 200) =~ (arena.id |> Integer.to_string)
+      assert html_response(conn, 200) =~ arena.id |> Integer.to_string()
     end
   end
 end

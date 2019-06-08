@@ -200,7 +200,9 @@ defmodule ArenaGenerator do
     {arena_width, arena_height} = get_arena_dimensions(arena)
 
     Enum.reduce(0..(arena_height - 1), "", fn y, acc ->
-      acc <> Enum.reduce(0..(arena_width - 1), "", fn x, acc2 -> acc2 <> arena[x][y] <> "\t" end) <> "\n"
+      acc <>
+        Enum.reduce(0..(arena_width - 1), "", fn x, acc2 -> acc2 <> arena[x][y] <> "\t" end) <>
+        "\n"
     end)
   end
 end

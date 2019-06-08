@@ -3,7 +3,7 @@
     <div class="-mx-3 md:flex mb-6">
       <div class="md:w-full px-3">
         <span class="text-grey-darkest font-bold md:text-2xl sm:text-xl"><%= "Arena " <> (@arena.id |> Integer.to_string) %></span><br>
-        Width: <%= @arena.width %> // Height: <%= @arena.height %> // Level: <%= @arena.level %> // Players: <%= @arena.players %> // Rocks: <%= @arena.rocks %>
+        Width: <%= @arena.width %> | Height: <%= @arena.height %> | Level: <%= @arena.level %> | Players: <%= @arena.players %> | Rocks: <%= @arena.rocks %>
       </div>
     </div>
     <div class="-mx-3 md:flex mb-6 justify-center">

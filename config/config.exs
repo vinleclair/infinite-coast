@@ -22,8 +22,10 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-# Use Jason for JSON parsing in Phoenix
-config :phoenix, :json_library, Jason
+# Configure Rummage Phoenix
+config :rummage_ecto, Rummage.Ecto,
+  default_repo: Garena.Repo,
+  default_per_page: 5
 
 # Configure Google OAuth
 config :ueberauth, Ueberauth,
