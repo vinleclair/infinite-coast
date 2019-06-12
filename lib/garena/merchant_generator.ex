@@ -35,6 +35,12 @@ defmodule MerchantGenerator do
 
   @doc """
   Generate a merchant table based on player level
+  ## Examples
+      iex> MerchantGenerator.generate_merchant_table(0)
+      {:error, "Merchant level must be between 1 and 20. Please try again."}
+
+      iex> MerchantGenerator.generate_merchant_table(2)
+      {:ok, "Merchant table successfully generated. See './merchant_table_level_2.yaml'."} 
   """
   @spec generate_merchant_table(integer) :: merchant_table
   def generate_merchant_table(player_level) when player_level < 1 or player_level > 20,
