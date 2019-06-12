@@ -35,4 +35,10 @@ defmodule Garena.TestHelpers do
 
     arena
   end
+
+  def generate_random_arena do
+    width = Enum.random(6..24)
+    height = Enum.random(6..24)
+    ArenaGenerator.generate_empty_arena(width, height)
+  end
 end
