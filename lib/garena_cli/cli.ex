@@ -1,6 +1,6 @@
 defmodule ArenaGenerator.CLI do
   @default_merchant_level 1
-  @default_player_level 0
+  @default_player_level -1
   @default_players 0
   @default_scenario_players 4
   @default_rocks false
@@ -12,7 +12,10 @@ defmodule ArenaGenerator.CLI do
   """
 
   @doc """
-    Parses the command-line arguments and calls the arena generator
+  Parses the command-line arguments and calls the arena generator
+
+  ## Examples
+     
   """
   @spec main(String.t()) :: String.t()
   def main([]), do: execute_command(%{help: true})

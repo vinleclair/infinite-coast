@@ -112,14 +112,14 @@ defmodule ArenaGenerator do
   Add a random encounter to one side of the arena
   """
   @spec add_encounter(arena, integer) :: arena
-  def add_encounter(arena, 0), do: arena
+  def add_encounter(arena, -1), do: arena
 
   def add_encounter(arena, level) do
     level
     |> get_random_encounter_from_file
     |> Map.get("enemies")
     |> Enum.reduce([], fn enemy, acc ->
-      acc ++ [Map.keys(enemy) |> List.first() |> String.first() |> String.upcase()]
+      acc ++ [get_marker_letter(enemy)]
     end)
     |> place_enemy_markers(arena)
   end
@@ -156,6 +156,7 @@ defmodule ArenaGenerator do
     end
   end
 
+  defp get_marker_letter(enemy), do: Map.keys(enemy) |> List.first() |> String.first() |> String.upcase()
   defp get_marker_location(arena_width, arena_height),
     do: {Enum.random(0..(arena_width - 1)), Enum.random(0..(div(arena_height, 2) - 1))}
 
