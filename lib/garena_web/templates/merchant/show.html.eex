@@ -1,0 +1,28 @@
+<h1>Show Merchant</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @merchant.name %>
+  </li>
+
+  <li>
+    <strong>Level:</strong>
+    <%= @merchant.level %>
+  </li>
+
+  <li>
+    <strong>Coins:</strong>
+    <%= @merchant.coins %>
+  </li>
+
+  <li>
+    <strong>Items:</strong>
+    <%= @merchant.items %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.merchant_path(@conn, :edit, @merchant) %></span>
+<span><%= link "Back", to: Routes.merchant_path(@conn, :index) %></span>

@@ -99,4 +99,69 @@ defmodule Garena.ComponentTest do
       assert %Ecto.Changeset{} = Component.change_arena(arena)
     end
   end
+
+  describe "merchants" do
+    alias Garena.Component.Merchant
+
+    @valid_attrs %{coins: "some coins", items: "some items", level: 42, name: "some name"}
+    @update_attrs %{coins: "some updated coins", items: "some updated items", level: 43, name: "some updated name"}
+    @invalid_attrs %{coins: nil, items: nil, level: nil, name: nil}
+
+    def merchant_fixture(attrs \\ %{}) do
+      {:ok, merchant} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Component.create_merchant()
+
+      merchant
+    end
+
+    test "list_merchants/0 returns all merchants" do
+      merchant = merchant_fixture()
+      assert Component.list_merchants() == [merchant]
+    end
+
+    test "get_merchant!/1 returns the merchant with given id" do
+      merchant = merchant_fixture()
+      assert Component.get_merchant!(merchant.id) == merchant
+    end
+
+    test "create_merchant/1 with valid data creates a merchant" do
+      assert {:ok, %Merchant{} = merchant} = Component.create_merchant(@valid_attrs)
+      assert merchant.coins == "some coins"
+      assert merchant.items == "some items"
+      assert merchant.level == 42
+      assert merchant.name == "some name"
+    end
+
+    test "create_merchant/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Component.create_merchant(@invalid_attrs)
+    end
+
+    test "update_merchant/2 with valid data updates the merchant" do
+      merchant = merchant_fixture()
+      assert {:ok, %Merchant{} = merchant} = Component.update_merchant(merchant, @update_attrs)
+      assert merchant.coins == "some updated coins"
+      assert merchant.items == "some updated items"
+      assert merchant.level == 43
+      assert merchant.name == "some updated name"
+    end
+
+    test "update_merchant/2 with invalid data returns error changeset" do
+      merchant = merchant_fixture()
+      assert {:error, %Ecto.Changeset{}} = Component.update_merchant(merchant, @invalid_attrs)
+      assert merchant == Component.get_merchant!(merchant.id)
+    end
+
+    test "delete_merchant/1 deletes the merchant" do
+      merchant = merchant_fixture()
+      assert {:ok, %Merchant{}} = Component.delete_merchant(merchant)
+      assert_raise Ecto.NoResultsError, fn -> Component.get_merchant!(merchant.id) end
+    end
+
+    test "change_merchant/1 returns a merchant changeset" do
+      merchant = merchant_fixture()
+      assert %Ecto.Changeset{} = Component.change_merchant(merchant)
+    end
+  end
 end
