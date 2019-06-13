@@ -41,6 +41,8 @@ defmodule MerchantGenerator do
 
       iex> MerchantGenerator.generate_merchant_table(2)
       {:ok, "Merchant table successfully generated. See './merchant_table_level_2.yaml'."} 
+      iex> File.rm("./merchant_table_level_2.yaml")
+      :ok
   """
   @spec generate_merchant_table(integer) :: merchant_table
   def generate_merchant_table(player_level) when player_level < 1 or player_level > 20,
