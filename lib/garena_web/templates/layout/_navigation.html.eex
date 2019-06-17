@@ -19,9 +19,13 @@
         <%= link "Arenas", to: Routes.arena_path(@conn, :index), class: "block mt-4 lg:inline-block lg:mt-0 text-grey-darkest mr-4 no-underline hover:underline" %>
         <%= link "Generate Arena", to: Routes.arena_path(@conn, :new), class: "block mt-4 lg:inline-block lg:mt-0 text-grey-darkest mr-4 no-underline hover:underline" %>
 
+        <%= link "Merchants", to: Routes.merchant_path(@conn, :index), class: "block mt-4 lg:inline-block lg:mt-0 text-grey-darkest mr-4 no-underline hover:underline" %>
+        <%= link "Generate Merchant", to: Routes.merchant_path(@conn, :new), class: "block mt-4 lg:inline-block lg:mt-0 text-grey-darkest mr-4 no-underline hover:underline" %>
+
         <%= link "Sign out", to: Routes.session_path(@conn, :delete), class: "block mt-4 lg:inline-block lg:mt-0 text-grey-darkest mr-4 no-underline hover:underline" %>
       <% else %>
          <%= link "Arenas", to: Routes.arena_path(@conn, :index), class: "block mt-4 lg:inline-block lg:mt-0 text-grey-darkest mr-4 no-underline hover:underline" %>
+         <%= link "Merchants", to: Routes.merchant_path(@conn, :index), class: "block mt-4 lg:inline-block lg:mt-0 text-grey-darkest mr-4 no-underline hover:underline" %>
         <a href="/auth/google?scope=email%20profile" class="block mt-4 lg:inline-block lg:mt-0 text-grey-darkest mr-4 no-underline hover:underline">
           Sign in with Google
         </a>

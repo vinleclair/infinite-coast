@@ -49,14 +49,12 @@ defmodule MerchantGenerator do
     do: {:error, "Merchant level must be between 1 and 20. Please try again."}
 
   def generate_merchant_table(player_level) do
-    name = Constants.Merchant.random_name()
-    coins = get_coins_amount(player_level)
-    items = Enum.reduce(0..Enum.random(1..10), [], fn _, acc -> acc ++ [get_random_item()] end)
+    merchant = generate_merchant(player_level)
 
     File.write(
       "./merchant_table_level_#{player_level}.yaml",
-      "---\n- name: #{name}\n- coins: #{coins} gp\n- inventory:\n#{
-        for item <- items,
+      "---\n- name: #{merchant["name"]}\n- coins: #{merchant["coins"]}\n- inventory:\n#{
+        for item <- merchant["items"],
             do:
               "    - Item Name: #{Map.get(item, "Item Name")}\n      Price: #{
                 Map.get(item, "#{Enum.random(@prices)}")
@@ -77,5 +75,17 @@ defmodule MerchantGenerator do
     |> YamlElixir.read_from_file()
     |> elem(1)
     |> Enum.random()
+  end
+
+  @doc """
+  Generate a merchant
+  """
+  def generate_merchant(player_level) do
+    %{
+      "level" => "#{player_level}", 
+      "name" => Constants.Merchant.random_name(),
+      "coins" => "#{get_coins_amount(player_level)} gp",
+      "items" => Enum.reduce(0..Enum.random(1..10), [], fn _, acc -> acc ++ [get_random_item()] end)
+    }
   end
 end

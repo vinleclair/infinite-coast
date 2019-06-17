@@ -115,7 +115,7 @@ defmodule Garena.Component do
 
   """
   def list_merchants do
-    Repo.all(Merchant)
+    Repo.all(Merchant) |> Repo.preload(:user)
   end
 
   @doc """
@@ -132,7 +132,7 @@ defmodule Garena.Component do
       ** (Ecto.NoResultsError)
 
   """
-  def get_merchant!(id), do: Repo.get!(Merchant, id)
+  def get_merchant!(id), do: Repo.get!(Merchant, id) |> Repo.preload(:user) 
 
   @doc """
   Creates a merchant.
@@ -146,9 +146,10 @@ defmodule Garena.Component do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_merchant(attrs \\ %{}) do
+  def create_merchant(user, attrs \\ %{}) do
     %Merchant{}
     |> Merchant.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:user, user)
     |> Repo.insert()
   end
 

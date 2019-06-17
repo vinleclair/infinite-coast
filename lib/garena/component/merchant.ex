@@ -5,7 +5,7 @@ defmodule Garena.Component.Merchant do
   schema "merchants" do
     field :coins, :string
     field :items, :string
-    field :level, :integer
+    field :level, :string
     field :name, :string
     belongs_to(:user, Garena.User)
 

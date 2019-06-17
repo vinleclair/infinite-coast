@@ -36,6 +36,21 @@ defmodule Garena.TestHelpers do
     arena
   end
 
+  def generate_merchant_fixture(%Garena.User{} = user, attrs \\ %{}) do
+    merchant_params =
+      attrs
+      |> Enum.into(%{
+        coins: "30 gp",
+        level: "2",
+        items: "Item Name: Tinderbox\nPrice: 5 sp",
+        name: "Divrash"
+      })
+
+    {:ok, merchant} = Component.create_merchant(user, merchant_params)
+
+    merchant
+  end
+
   def generate_random_arena do
     width = Enum.random(6..24)
     height = Enum.random(6..24)

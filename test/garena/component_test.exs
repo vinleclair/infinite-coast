@@ -103,15 +103,18 @@ defmodule Garena.ComponentTest do
   describe "merchants" do
     alias Garena.Component.Merchant
 
-    @valid_attrs %{coins: "some coins", items: "some items", level: 42, name: "some name"}
-    @update_attrs %{coins: "some updated coins", items: "some updated items", level: 43, name: "some updated name"}
+    @valid_attrs %{coins: "some coins", items: "some items", level: "2", name: "some name"}
+    @update_attrs %{coins: "some updated coins", items: "some updated items", level: "3", name: "some updated name"}
     @invalid_attrs %{coins: nil, items: nil, level: nil, name: nil}
 
     def merchant_fixture(attrs \\ %{}) do
-      {:ok, merchant} =
+      user = user_fixture()
+      
+      merchant_params =
         attrs
         |> Enum.into(@valid_attrs)
-        |> Component.create_merchant()
+
+      {:ok, merchant} = Component.create_merchant(user, merchant_params)
 
       merchant
     end
@@ -127,15 +130,18 @@ defmodule Garena.ComponentTest do
     end
 
     test "create_merchant/1 with valid data creates a merchant" do
-      assert {:ok, %Merchant{} = merchant} = Component.create_merchant(@valid_attrs)
+      user = user_fixture() 
+
+      assert {:ok, %Merchant{} = merchant} = Component.create_merchant(user, @valid_attrs)
       assert merchant.coins == "some coins"
       assert merchant.items == "some items"
-      assert merchant.level == 42
+      assert merchant.level == "2"
       assert merchant.name == "some name"
     end
 
     test "create_merchant/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Component.create_merchant(@invalid_attrs)
+      user = user_fixture()
+      assert {:error, %Ecto.Changeset{}} = Component.create_merchant(user, @invalid_attrs)
     end
 
     test "update_merchant/2 with valid data updates the merchant" do
@@ -143,7 +149,7 @@ defmodule Garena.ComponentTest do
       assert {:ok, %Merchant{} = merchant} = Component.update_merchant(merchant, @update_attrs)
       assert merchant.coins == "some updated coins"
       assert merchant.items == "some updated items"
-      assert merchant.level == 43
+      assert merchant.level == "3"
       assert merchant.name == "some updated name"
     end
 

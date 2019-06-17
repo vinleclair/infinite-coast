@@ -4,7 +4,7 @@ defmodule Garena.Repo.Migrations.CreateMerchants do
   def change do
     create table(:merchants) do
       add :name, :string
-      add :level, :integer
+      add :level, :string
       add :coins, :string
       add :items, :text
       add :user_id, references(:users, on_delete: :nothing)
