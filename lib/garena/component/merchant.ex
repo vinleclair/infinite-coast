@@ -1,5 +1,6 @@
 defmodule Garena.Component.Merchant do
   use Ecto.Schema
+  use Rummage.Ecto 
   import Ecto.Changeset
 
   schema "merchants" do

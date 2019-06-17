@@ -5,6 +5,11 @@
         Merchants
       </div>
     </div>
+    <div class="-mx-3 md:flex mb-6">
+      <div class="md:w-full px-3 text-grey-darkest font-bold uppercase text-sm">
+        Sort by: <%= sort_link @conn, @rummage, [field: :name, ci: true] %> ~ <%= sort_link @conn, @rummage, [field: :level] %>
+      </div>
+    </div>
     <%= for merchant <- @merchants do %>
       <div class="-mx-3 md:flex mb-6">
         <div class="md:w-full px-3">
@@ -15,5 +20,8 @@
         </div>
       </div>
     <% end %>
+    <div class="flex px-3 justify-center">
+      <%= pagination_link(@conn, @rummage) %>
+    </div>
   </div>
 </div>

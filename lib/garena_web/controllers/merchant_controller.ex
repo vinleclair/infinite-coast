@@ -1,14 +1,19 @@
 defmodule GarenaWeb.MerchantController do
   use GarenaWeb, :controller
 
-  alias Garena.Component
+  alias Garena.{Component, Repo}
   alias Garena.Component.{Merchant, MerchantGeneratorWebWrapper}
 
   plug :check_merchant_owner when action in [:delete]
 
-  def index(conn, _params) do
-    merchants = Component.list_merchants()
-    render(conn, "index.html", merchants: merchants)
+  def index(conn, params) do
+    {query, rummage} =
+      Merchant
+      |> Merchant.rummage(params["rummage"])
+
+    merchants = Repo.all(query)
+
+    render(conn, "index.html", merchants: merchants, rummage: rummage)
   end
 
   def new(conn, _params) do
