@@ -10,7 +10,7 @@ defmodule GarenaWeb.MerchantControllerTest do
   describe "index" do
     test "lists all merchants", %{conn: conn} do
       conn = get(conn, Routes.merchant_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Merchants"
+      assert html_response(conn, 200) =~ "Merchants"
     end
   end
 
@@ -62,9 +62,9 @@ defmodule GarenaWeb.MerchantControllerTest do
   #   conn = get(conn, Routes.merchant_path(conn, :edit, merchant))
   #   assert html_response(conn, 200) =~ "Edit Merchant"
   # end
-  #end
+  # end
 
-  #describe "update merchant" do
+  # describe "update merchant" do
   # setup [:create_merchant]
   #
   # test "redirects when data is valid", %{conn: conn, merchant: merchant} do
@@ -79,7 +79,7 @@ defmodule GarenaWeb.MerchantControllerTest do
   #   conn = put(conn, Routes.merchant_path(conn, :update, merchant), merchant: @invalid_attrs)
   #   assert html_response(conn, 200) =~ "Edit Merchant"
   # end
-  #end
+  # end
 
   describe "delete merchant" do
     test "deletes chosen merchant", %{conn: conn} do
@@ -115,4 +115,13 @@ defmodule GarenaWeb.MerchantControllerTest do
     end
   end
 
+  describe "show merchant" do
+    test "shows chosen merchant", %{conn: conn} do
+      user = user_fixture()
+      merchant = generate_merchant_fixture(user) 
+      conn = get(conn, Routes.merchant_path(conn, :show, merchant))
+
+      assert html_response(conn, 200) =~ merchant.name 
+    end
+  end
 end

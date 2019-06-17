@@ -1,28 +1,22 @@
-<h1>Show Merchant</h1>
-
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @merchant.name %>
-  </li>
-
-  <li>
-    <strong>Level:</strong>
-    <%= @merchant.level %>
-  </li>
-
-  <li>
-    <strong>Coins:</strong>
-    <%= @merchant.coins %>
-  </li>
-
-  <li>
-    <strong>Items:</strong>
-    <%= @merchant.items %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: Routes.merchant_path(@conn, :edit, @merchant) %></span>
-<span><%= link "Back", to: Routes.merchant_path(@conn, :index) %></span>
+<div class="mt-10 container mx-auto">
+  <div class="bg-grey-lighter shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+    <div class="-mx-3 md:flex mb-6">
+      <div class="md:w-full px-3">
+        <span class="text-grey-darkest font-bold md:text-2xl sm:text-xl"><%= @merchant.name %></span><br>
+        Level: <%= @merchant.level %><br>
+        Coins: <%= @merchant.coins %><br>
+        Items: <%= text_to_html(@merchant.items) %> 
+      </div>
+    </div>
+    <div class="-mx-3 flex">
+      <div class="w-1/2 px-3 text-left">
+        <%= link "Back", to: Routes.merchant_path(@conn, :index), class: "no-underline hover:underline uppercase text-grey-darker" %>
+      </div>
+      <div class="w-1/2 px-3 text-right">
+        <%= if @conn.assigns.user && @conn.assigns.user.id == @merchant.user_id do %>
+          <%= link "Delete", to: Routes.merchant_path(@conn, :delete, @merchant), method: :delete, data: [confirm: "Are you sure?"], class: "no-underline hover:underline uppercase text-red-dark" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

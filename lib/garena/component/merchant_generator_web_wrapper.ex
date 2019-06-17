@@ -22,7 +22,7 @@ defmodule Garena.Component.MerchantGeneratorWebWrapper do
   defp parse_items(items) do
     Enum.reduce(items, "", fn item, acc ->
       acc <>
-        "#{Map.get(item, "Item Name")}: #{Map.get(item, "#{Enum.random(@prices)}")}\n"
+        "-#{Map.get(item, "Item Name")}: #{Map.get(item, "#{Enum.random(@prices)}")}\n"
     end)
   end
 end

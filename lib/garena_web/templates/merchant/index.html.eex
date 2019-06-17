@@ -1,32 +1,19 @@
-<h1>Listing Merchants</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Level</th>
-      <th>Coins</th>
-      <th>Items</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for merchant <- @merchants do %>
-    <tr>
-      <td><%= merchant.name %></td>
-      <td><%= merchant.level %></td>
-      <td><%= merchant.coins %></td>
-      <td><%= merchant.items %></td>
-
-      <td>
-        <%= link "Show", to: Routes.merchant_path(@conn, :show, merchant) %>
-        <%= link "Edit", to: Routes.merchant_path(@conn, :edit, merchant) %>
-        <%= link "Delete", to: Routes.merchant_path(@conn, :delete, merchant), method: :delete, data: [confirm: "Are you sure?"] %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New Merchant", to: Routes.merchant_path(@conn, :new) %></span>
+<div class="flex justify-center mt-10 xs:mx-4 sm:mx-0">
+  <div class="bg-grey-lighter shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+    <div class="-mx-3 md:flex mb-6">
+      <div class="md:w-full px-3 text-grey-darkest font-bold uppercase text-base">
+        Merchants
+      </div>
+    </div>
+    <%= for merchant <- @merchants do %>
+      <div class="-mx-3 md:flex mb-6">
+        <div class="md:w-full px-3">
+          <%= link merchant.name, to: Routes.merchant_path(@conn, :show, merchant), class: "no-underline hover:underline text-grey-darkest font-bold text-lg" %><br>
+          Level: <%= merchant.level %><br>
+          Coins: <%= merchant.coins %><br>
+          Items: <%= text_to_html(merchant.items) %> 
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
