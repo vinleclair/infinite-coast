@@ -2,7 +2,7 @@ defmodule Garena.Component.ArenaGeneratorWebWrapper do
   @type arena_params :: map
 
   @doc """
-  Generate and add an arena to arena_params based on paramsa
+  Generate and add an arena to arena_params based on params
   """
   @spec add_arena(arena_params) :: arena_params
   def add_arena(arena_params) do
