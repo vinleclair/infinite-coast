@@ -55,31 +55,34 @@ defmodule GarenaWeb.MerchantControllerTest do
     end
   end
 
-  #  describe "edit merchant" do
-  # setup [:create_merchant]
-  #
-  # test "renders form for editing chosen merchant", %{conn: conn, merchant: merchant} do
-  #   conn = get(conn, Routes.merchant_path(conn, :edit, merchant))
-  #   assert html_response(conn, 200) =~ "Edit Merchant"
-  # end
-  # end
+  describe "edit merchant" do
+    test "renders form for editing chosen merchant", %{conn: conn} do
+      user = user_fixture()
+      merchant = generate_merchant_fixture(user) 
 
-  # describe "update merchant" do
-  # setup [:create_merchant]
-  #
-  # test "redirects when data is valid", %{conn: conn, merchant: merchant} do
-  #   conn = put(conn, Routes.merchant_path(conn, :update, merchant), merchant: @update_attrs)
-  #   assert redirected_to(conn) == Routes.merchant_path(conn, :show, merchant)
-  #
-  #   conn = get(conn, Routes.merchant_path(conn, :show, merchant))
-  #   assert html_response(conn, 200) =~ "some updated coins"
-  # end
-  #
-  # test "renders errors when data is invalid", %{conn: conn, merchant: merchant} do
-  #   conn = put(conn, Routes.merchant_path(conn, :update, merchant), merchant: @invalid_attrs)
-  #   assert html_response(conn, 200) =~ "Edit Merchant"
-  # end
-  # end
+      conn = get(conn, Routes.merchant_path(conn, :edit, merchant))
+      assert html_response(conn, 200) =~ "Edit Merchant"
+    end
+  end
+
+  describe "update merchant" do
+    test "redirects when data is valid", %{conn: conn, merchant: merchant} do
+      user = user_fixture()
+      merchant = generate_merchant_fixture(user) 
+      conn = put(conn, Routes.merchant_path(conn, :update, merchant), merchant: @update_attrs)
+      assert redirected_to(conn) == Routes.merchant_path(conn, :show, merchant)
+
+      conn = get(conn, Routes.merchant_path(conn, :show, merchant))
+      assert html_response(conn, 200) =~ "some updated coins"
+    end
+
+    test "renders errors when data is invalid", %{conn: conn} do
+      user = user_fixture()
+      merchant = generate_merchant_fixture(user) 
+      conn = put(conn, Routes.merchant_path(conn, :update, merchant), merchant: @invalid_attrs)
+      assert html_response(conn, 200) =~ "Edit Merchant"
+    end
+  end
 
   describe "delete merchant" do
     test "deletes chosen merchant", %{conn: conn} do
@@ -118,10 +121,10 @@ defmodule GarenaWeb.MerchantControllerTest do
   describe "show merchant" do
     test "shows chosen merchant", %{conn: conn} do
       user = user_fixture()
-      merchant = generate_merchant_fixture(user) 
+      merchant = generate_merchant_fixture(user)
       conn = get(conn, Routes.merchant_path(conn, :show, merchant))
 
-      assert html_response(conn, 200) =~ merchant.name 
+      assert html_response(conn, 200) =~ merchant.name
     end
   end
 end

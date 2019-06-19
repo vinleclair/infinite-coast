@@ -17,6 +17,11 @@
           Level: <%= merchant.level %><br>
           Coins: <%= merchant.coins %><br>
           Items: <%= text_to_html(merchant.items) %> 
+          <div class="w-1/2 px-3 text-right">
+            <%= if @conn.assigns.user && @conn.assigns.user.id == merchant.user_id do %>
+              <%= link "Edit", to: Routes.merchant_path(@conn, :edit, merchant), class: "no-underline hover:underline uppercase font-bold" %> 
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>

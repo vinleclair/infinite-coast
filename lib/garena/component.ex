@@ -132,7 +132,7 @@ defmodule Garena.Component do
       ** (Ecto.NoResultsError)
 
   """
-  def get_merchant!(id), do: Repo.get!(Merchant, id) |> Repo.preload(:user) 
+  def get_merchant!(id), do: Repo.get!(Merchant, id) |> Repo.preload(:user)
 
   @doc """
   Creates a merchant.

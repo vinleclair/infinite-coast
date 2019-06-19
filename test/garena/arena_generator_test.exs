@@ -72,7 +72,7 @@ defmodule ArenaGeneratorTest do
   end
 
   test "print arena" do
-    arena = ArenaGenerator.generate_empty_arena(4, 4) 
+    arena = ArenaGenerator.generate_empty_arena(4, 4)
     assert capture_io(fn -> ArenaGenerator.print_arena(arena) end) == "OOOO\nOOOO\nOOOO\nOOOO\n"
   end
 end

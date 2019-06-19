@@ -21,7 +21,7 @@ defmodule GarenaWeb.Router do
   scope "/", GarenaWeb do
     pipe_through [:browser, :auth]
 
-    resources "/merchants", MerchantController, only: [:new, :create, :delete, :edit, :update] 
+    resources "/merchants", MerchantController, only: [:new, :create, :delete, :edit, :update]
     resources "/arenas", ArenaController, only: [:new, :create, :delete]
   end
 

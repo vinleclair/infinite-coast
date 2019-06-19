@@ -82,10 +82,11 @@ defmodule MerchantGenerator do
   """
   def generate_merchant(player_level) do
     %{
-      "level" => "#{player_level}", 
+      "level" => "#{player_level}",
       "name" => Constants.Merchant.random_name(),
       "coins" => "#{get_coins_amount(player_level)} gp",
-      "items" => Enum.reduce(0..Enum.random(1..10), [], fn _, acc -> acc ++ [get_random_item()] end)
+      "items" =>
+        Enum.reduce(0..Enum.random(1..10), [], fn _, acc -> acc ++ [get_random_item()] end)
     }
   end
 end

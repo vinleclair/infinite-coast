@@ -156,7 +156,9 @@ defmodule ArenaGenerator do
     end
   end
 
-  defp get_marker_letter(enemy), do: Map.keys(enemy) |> List.first() |> String.first() |> String.upcase()
+  defp get_marker_letter(enemy),
+    do: Map.keys(enemy) |> List.first() |> String.first() |> String.upcase()
+
   defp get_marker_location(arena_width, arena_height),
     do: {Enum.random(0..(arena_width - 1)), Enum.random(0..(div(arena_height, 2) - 1))}
 

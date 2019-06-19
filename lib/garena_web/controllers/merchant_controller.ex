@@ -43,25 +43,25 @@ defmodule GarenaWeb.MerchantController do
     render(conn, "show.html", merchant: merchant)
   end
 
-  #  def edit(conn, %{"id" => id}) do
-  # merchant = Component.get_merchant!(id)
-  # changeset = Component.change_merchant(merchant)
-  # render(conn, "edit.html", merchant: merchant, changeset: changeset)
-  # end
+  def edit(conn, %{"id" => id}) do
+    merchant = Component.get_merchant!(id)
+    changeset = Component.change_merchant(merchant)
+    render(conn, "edit.html", merchant: merchant, changeset: changeset)
+  end
 
-  # def update(conn, %{"id" => id, "merchant" => merchant_params}) do
-  # merchant = Component.get_merchant!(id)
+  def update(conn, %{"id" => id, "merchant" => merchant_params}) do
+    merchant = Component.get_merchant!(id)
 
-  # case Component.update_merchant(merchant, merchant_params) do
-  #   {:ok, merchant} ->
-  #     conn
-  #     |> put_flash(:info, "Merchant updated successfully.")
-  #     |> redirect(to: Routes.merchant_path(conn, :show, merchant))
-  #
-  #   {:error, %Ecto.Changeset{} = changeset} ->
-  #     render(conn, "edit.html", merchant: merchant, changeset: changeset)
-  # end
-  # end
+    case Component.update_merchant(merchant, merchant_params) do
+      {:ok, merchant} ->
+        conn
+        |> put_flash(:info, "Merchant updated successfully.")
+        |> redirect(to: Routes.merchant_path(conn, :show, merchant))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "edit.html", merchant: merchant, changeset: changeset)
+    end
+  end
 
   def delete(conn, %{"id" => id}) do
     merchant = Component.get_merchant!(id)

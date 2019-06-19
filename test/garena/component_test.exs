@@ -104,12 +104,17 @@ defmodule Garena.ComponentTest do
     alias Garena.Component.Merchant
 
     @valid_attrs %{coins: "some coins", items: "some items", level: "2", name: "some name"}
-    @update_attrs %{coins: "some updated coins", items: "some updated items", level: "3", name: "some updated name"}
+    @update_attrs %{
+      coins: "some updated coins",
+      items: "some updated items",
+      level: "3",
+      name: "some updated name"
+    }
     @invalid_attrs %{coins: nil, items: nil, level: nil, name: nil}
 
     def merchant_fixture(attrs \\ %{}) do
       user = user_fixture()
-      
+
       merchant_params =
         attrs
         |> Enum.into(@valid_attrs)
@@ -130,7 +135,7 @@ defmodule Garena.ComponentTest do
     end
 
     test "create_merchant/1 with valid data creates a merchant" do
-      user = user_fixture() 
+      user = user_fixture()
 
       assert {:ok, %Merchant{} = merchant} = Component.create_merchant(user, @valid_attrs)
       assert merchant.coins == "some coins"
